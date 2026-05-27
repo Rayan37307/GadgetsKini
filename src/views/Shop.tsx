@@ -8,18 +8,15 @@ import { useApp } from '../context/AppContext';
 import { MOCK_PRODUCTS } from '../data';
 import { Product } from '../types';
 import { AnimatePresence, motion } from 'motion/react';
-import { 
-  Grid, 
-  List, 
-  Star, 
-  Heart, 
-  Eye, 
-  SlidersHorizontal, 
-  X, 
+import {
+  Grid,
+  List,
+  X,
   Search,
   Check,
   ChevronDown
 } from 'lucide-react';
+import ProductCard from '../components/ProductCard';
 
 export default function Shop() {
   const { 
@@ -387,131 +384,20 @@ export default function Shop() {
             <>
               {/* LAYOUT CONTAINER COMPACTOR */}
               <div className={gridLayout ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'flex flex-col gap-4'}>
-                {visibleProducts.map((product) => {
-                  const isLiked = wishlist.includes(product.id);
-                  const isCompareChecked = comparisonList.some(p => p.id === product.id);
-                  const discountPercentage = product.originalPrice 
-                    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
-                    : 0;
-
-                  return (
-                    <div 
-                      key={product.id}
-                      className={`bg-slate-900/60 border border-slate-850 hover:border-slate-750 p-4 rounded-2xl flex transition-all duration-300 relative ${
-                        gridLayout ? 'flex-col justify-between' : 'flex-col sm:flex-row gap-6'
-                      }`}
-                    >
-                      {/* DISCOUNT CHIP */}
-                      {product.originalPrice && (
-                        <div className="absolute top-4 left-4 z-10 bg-red-500 text-slate-950 font-black text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider">
-                          -{discountPercentage}%
-                        </div>
-                      )}
-
-                      {/* ACTIONS ROW */}
-                      <div className="absolute top-4 right-4 z-10 flex gap-1.5">
-                        <button
-                          onClick={() => toggleWishlist(product.id)}
-                          className={`p-2 bg-slate-900/80 rounded-full border border-slate-800 transition-colors cursor-pointer ${isLiked ? 'text-rose-500 border-rose-500/20' : 'text-slate-400 hover:text-white'}`}
-                        >
-                          <Heart size={14} fill={isLiked ? 'currentColor' : 'none'} />
-                        </button>
-                        <button
-                          onClick={() => addToComparison(product)}
-                          className={`p-2 bg-slate-900/80 rounded-full border border-slate-800 transition-colors cursor-pointer ${isCompareChecked ? 'text-cyan-400 border-cyan-500/20' : 'text-slate-400 hover:text-blue-400'}`}
-                        >
-                          <SlidersHorizontal size={14} />
-                        </button>
-                      </div>
-
-                      {/* IMAGE SEGMENT */}
-                      <div 
-                        className={`bg-slate-950 rounded-xl flex items-center justify-center cursor-pointer relative group/img overflow-hidden ${
-                          gridLayout ? 'aspect-square mb-4 p-8' : 'w-full sm:w-48 aspect-square p-6 shrink-0'
-                        }`}
-                        onClick={() => navigateTo('product', { id: product.id })}
-                      >
-                        <img 
-                          src={product.image} 
-                          alt={product.name} 
-                          className="max-h-36 object-contain hover:scale-105 transition-transform duration-300"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
-                          <button
-                            onClick={(e) => { e.stopPropagation(); setQuickViewProduct(product); }}
-                            className="px-3 py-1.5 bg-slate-900 border border-slate-700 rounded text-[10px] text-white font-bold tracking-wider flex items-center gap-1 cursor-pointer"
-                          >
-                            <Eye size={12} /> Spec View
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* METADATA CONTENT SEGMENT */}
-                      <div className={`flex flex-col gap-2 flex-1 ${gridLayout ? '' : 'justify-center'}`}>
-                        <div className="flex items-center justify-between">
-                          <span className="text-[9px] font-mono tracking-widest text-[#06B6D4] uppercase">
-                            {product.brand}
-                          </span>
-                          {!product.inStock && (
-                            <span className="text-[8px] bg-red-500/10 text-red-400 px-2 border border-red-500/10 rounded uppercase font-bold">
-                              Sold Out
-                            </span>
-                          )}
-                        </div>
-
-                        <h3 
-                          onClick={() => navigateTo('product', { id: product.id })}
-                          className="font-display font-semibold text-sm text-slate-100 hover:text-blue-400 cursor-pointer transition-colors line-clamp-1"
-                        >
-                          {product.name}
-                        </h3>
-
-                        {/* STARS */}
-                        <div className="flex items-center gap-1.5 text-[10px]">
-                          <div className="flex text-amber-500">
-                            <Star fill="currentColor" size={12} />
-                          </div>
-                          <span className="font-bold text-slate-300">{product.rating}</span>
-                          <span className="text-slate-600">•</span>
-                          <span className="text-slate-500">({product.reviewCount} scores)</span>
-                        </div>
-
-                        {/* PRICING METADATA */}
-                        <div className="flex items-baseline gap-2 mt-1">
-                          <span className="text-sm font-black text-cyan-400">${product.price}</span>
-                          {product.originalPrice && (
-                            <span className="text-[10px] line-through text-slate-500">${product.originalPrice}</span>
-                          )}
-                        </div>
-
-                        {/* SHORT FEATURES EXPOSED ON LIST VIEWS */}
-                        {!gridLayout && product.shortFeatures.length > 0 && (
-                          <ul className="hidden md:flex flex-col gap-1 text-[10px] text-slate-400 mt-2 list-inside list-disc">
-                            {product.shortFeatures.slice(0, 3).map((f, i) => (
-                              <li key={i}>{f}</li>
-                            ))}
-                          </ul>
-                        )}
-                        {!gridLayout && product.shortFeatures.length === 0 && product.description[0] && (
-                          <p className="hidden md:block text-[10px] text-slate-400 mt-2 line-clamp-2">
-                            {product.description[0]}
-                          </p>
-                        )}
-
-                        {/* ADD CART CTA */}
-                        <button
-                          onClick={() => addToCart(product, 1)}
-                          disabled={!product.inStock}
-                          className="w-full mt-4 py-2 bg-slate-800 disabled:opacity-45 hover:bg-blue-600 hover:text-slate-950 text-slate-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
-                        >
-                          Add to Cart
-                        </button>
-                      </div>
-
-                    </div>
-                  );
-                })}
+                {visibleProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    listView={!gridLayout}
+                    isLiked={wishlist.includes(product.id)}
+                    isInCompare={comparisonList.some(p => p.id === product.id)}
+                    onNavigate={() => navigateTo('product', { id: product.id })}
+                    onWishlist={() => toggleWishlist(product.id)}
+                    onCompare={() => addToComparison(product)}
+                    onQuickView={() => setQuickViewProduct(product)}
+                    onAddToCart={() => addToCart(product, 1)}
+                  />
+                ))}
               </div>
 
               {/* PAGINATION PROGRESS BAR & LOAD MORE BUTTON */}

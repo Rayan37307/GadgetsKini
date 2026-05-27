@@ -18,11 +18,9 @@ import {
   Heart,
   ChevronRight,
   HelpCircle,
-  Eye,
-  SlidersHorizontal,
   Mail,
-  Star
 } from 'lucide-react';
+import ProductCard from '../components/ProductCard';
 import { motion } from 'motion/react';
 
 export default function Home() {
@@ -112,63 +110,101 @@ export default function Home() {
       
 
       {/* 2. HERO SECTION */}
-      <section 
-        id="home-hero"
-        className="max-w-7xl mx-auto px-4 md:px-8 w-full relative overflow-hidden rounded-3xl"
-      >
-        <div className="absolute inset-0 bg-radial-[at_50%_40%] from-blue-600/10 via-transparent to-transparent opacity-60 pointer-events-none" />
-        
-        {/* Glow ambient lines in backing layout */}
-        <div className="absolute -left-1/4 top-1/4 w-96 h-[1px] bg-gradient-to-r from-transparent via-blue-500 to-transparent rotate-45 blur-xs" />
-        <div className="absolute -right-1/4 bottom-1/3 w-96 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent -rotate-45 blur-xs" />
+      <section
+  id="home-hero"
+  className="relative overflow-hidden px-4 md:px-8"
+>
+  {/* Background wrapper */}
+  <div className="max-w-7xl mx-auto relative rounded-[2rem] border border-slate-800 bg-slate-950 overflow-hidden">
 
-        <div className="bg-slate-900/60 rounded-3xl border border-slate-800/80 p-8 md:p-16 lg:p-24 flex flex-col lg:flex-row items-center gap-12 relative z-10">
-          
-          {/* Hero left text block */}
-          <div className="flex-1 flex flex-col gap-6 text-center lg:text-left">
-            <div className="inline-flex self-center lg:self-start items-center gap-2 bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full">
-              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-              Next-Gen Release Dropping Now
+    {/* Ambient gradients */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_35%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_30%)]" />
+
+    {/* Grid overlay */}
+    <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:80px_80px]" />
+
+    {/* Glow orbs */}
+    <div className="absolute top-24 left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl" />
+    <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+
+    <div className="relative z-10 py-28 md:py-36 px-6 md:px-16 flex flex-col items-center text-center">
+
+      {/* Announcement pill */}
+      <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-blue-500/20 bg-blue-500/10 px-5 py-2 backdrop-blur-xl">
+        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="text-[11px] tracking-[0.25em] uppercase font-semibold text-blue-300">
+          Future Tech Collection 2026
+        </span>
+      </div>
+
+      {/* Main heading */}
+      <h1 className="max-w-5xl text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-[0.95] text-white">
+        Redefining
+        <br />
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-300 to-blue-600">
+          Digital Luxury
+        </span>
+      </h1>
+
+      {/* Description */}
+      <p className="mt-8 max-w-2xl text-sm md:text-lg leading-relaxed text-slate-400">
+        Precision-crafted ecosystems engineered for modern creators,
+        gamers, and innovators. Performance, aesthetics, and intelligence —
+        fused into one seamless experience.
+      </p>
+
+      {/* CTA buttons */}
+      <div className="mt-12 flex flex-col sm:flex-row items-center gap-5">
+        <button
+          onClick={() => navigateTo('shop')}
+          className="group relative overflow-hidden rounded-2xl bg-blue-600 px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-105 hover:bg-blue-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.45)]"
+        >
+          <span className="relative z-10">Explore Collection</span>
+
+          <div className="absolute inset-0 translate-y-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-transform duration-300 group-hover:translate-y-0" />
+        </button>
+
+        <button
+          onClick={() => {
+            const el = document.getElementById('hot-deals');
+            if (el) {
+              el.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+            }
+          }}
+          className="rounded-2xl border border-slate-700 bg-white/[0.02] px-10 py-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-300 backdrop-blur-xl transition-all duration-300 hover:border-slate-500 hover:bg-slate-800/70 hover:text-white"
+        >
+          Trending Deals
+        </button>
+      </div>
+
+      {/* Bottom stats */}
+      <div className="mt-20 grid w-full max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+        {[
+          ['50K+', 'Elite Customers'],
+          ['120+', 'Premium Products'],
+          ['24/7', 'Global Support'],
+        ].map(([value, label]) => (
+          <div
+            key={label}
+            className="rounded-2xl border border-slate-800 bg-white/[0.03] px-6 py-7 backdrop-blur-md"
+          >
+            <div className="text-3xl font-black text-white">
+              {value}
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.08] font-display uppercase">
-              The Future,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-600 font-extrabold">Delivered.</span>
-            </h1>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-xl mx-auto lg:mx-0">
-              Uncompromising craftsmanship meets bleeding-edge capability. Discover the ultimate collection of authentic multi-node smart ecosystems, audio arrays, and next-gen wearables.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">
-              <button
-                onClick={() => navigateTo('shop')}
-                className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-500 text-slate-950 font-bold hover:text-white uppercase tracking-wider text-xs rounded-xl transition-all font-display duration-300 scale-100 hover:scale-105 hover:shadow-lg active:scale-97 cursor-pointer glow-blue"
-              >
-                Shop All Drops
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('hot-deals');
-                  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }}
-                className="w-full sm:w-auto px-8 py-4 border border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-slate-300 hover:text-white uppercase tracking-wider text-xs rounded-xl transition-all duration-300 cursor-pointer"
-              >
-                View Hot Deals
-              </button>
+            <div className="mt-2 text-xs uppercase tracking-[0.2em] text-slate-500">
+              {label}
             </div>
           </div>
+        ))}
+      </div>
 
-          {/* Hero right visually polished image */}
-          <div className="flex-1 w-full flex items-center justify-center relative">
-            <div className="absolute w-72 h-72 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl -z-10 animate-pulse" />
-            <img 
-              src="https://picsum.photos/seed/gadget_hero/600/400" 
-              alt="Premium Gadget Hardware Concept" 
-              className="w-full max-w-md md:max-w-lg object-contain rounded-2xl border border-slate-800 shadow-3xl transform -rotate-2 hover:rotate-0 transition-all duration-500"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-
-        </div>
-      </section>
+    </div>
+  </div>
+</section>
 
       {/* 3. FEATURED CATEGORIES ROW */}
       <section id="categories-strip" className="max-w-7xl mx-auto px-4 md:px-8 w-full">
@@ -229,112 +265,19 @@ export default function Home() {
 
         {/* PRODUCT GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {hotDeals.map((product) => {
-            const isLiked = wishlist.includes(product.id);
-            const discountPercentage = product.originalPrice 
-              ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) 
-              : 0;
-
-            const isInCompare = comparisonList.some(p => p.id === product.id);
-
-            return (
-              <div 
-                key={product.id}
-                className="bg-slate-800/40 border border-slate-850 hover:border-slate-700 rounded-2xl p-4 flex flex-col justify-between group transition-all duration-300 relative hover:scale-[1.01]"
-              >
-                {/* Sale and Discount badge */}
-                {product.originalPrice && (
-                  <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5">
-                    <span className="bg-red-500 text-slate-950 font-bold px-2.5 py-1 rounded-full text-[10px] uppercase tracking-wider shadow-md">
-                      -{discountPercentage}%
-                    </span>
-                    <span className="bg-slate-900 border border-slate-850 text-slate-100 text-[9px] font-semibold px-2 py-0.5 rounded-full">
-                      SALE
-                    </span>
-                  </div>
-                )}
-
-                {/* Heart wishlist toggle & comparison switcher controls */}
-                <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
-                  <button
-                    onClick={() => toggleWishlist(product.id)}
-                    className={`p-2 bg-slate-900/80 hover:bg-slate-900 rounded-full border transition-all cursor-pointer ${
-                      isLiked ? 'border-rose-500 text-rose-500' : 'border-slate-800 text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    <Heart size={14} fill={isLiked ? 'currentColor' : 'none'} />
-                  </button>
-
-                  <button
-                    onClick={() => addToComparison(product)}
-                    className={`p-2 bg-slate-900/80 hover:bg-slate-900 rounded-full border transition-all cursor-pointer tooltip-top ${
-                      isInCompare ? 'border-cyan-500 text-cyan-400' : 'border-slate-800 text-slate-400 hover:text-blue-400'
-                    }`}
-                    title={isInCompare ? 'Remove comparator' : 'Compare Specifications'}
-                  >
-                    <SlidersHorizontal size={14} />
-                  </button>
-                </div>
-
-                {/* IMAGE FLUSH TO CARD */}
-                <div 
-                  className="bg-slate-950 rounded-xl p-8 mb-4 flex items-center justify-center min-h-[180px] grow relative overflow-hidden cursor-pointer"
-                  onClick={() => navigateTo('product', { id: product.id })}
-                >
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="max-h-36 object-contain transform group-hover:scale-105 transition-transform duration-300"
-                    referrerPolicy="no-referrer"
-                  />
-                  {/* Subtle details tooltip overlay on card hover */}
-                  <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); setQuickViewProduct(product); }}
-                      className="px-4 py-2 bg-slate-900 border border-slate-700 text-xs text-white font-bold rounded-lg uppercase tracking-wider flex items-center gap-1.5 hover:bg-slate-800 scale-95 group-hover:scale-100 transition-all cursor-pointer"
-                    >
-                      <Eye size={12} /> Spec Quick-View
-                    </button>
-                  </div>
-                </div>
-
-                {/* TITLE & PRICE METADATA */}
-                <div className="flex flex-col gap-1.5 mt-2">
-                  <span className="text-[10px] font-mono tracking-widest text-slate-500 uppercase">{product.brand}</span>
-                  <p 
-                    onClick={() => navigateTo('product', { id: product.id })} 
-                    className="font-display font-medium text-sm text-white hover:text-blue-400 cursor-pointer transition-colors line-clamp-1"
-                  >
-                    {product.name}
-                  </p>
-
-                  <div className="flex justify-between items-center mt-1">
-                    <div className="flex items-center gap-1.5 text-xs text-amber-500">
-                      <Star fill="currentColor" size={12} />
-                      <span className="font-bold text-slate-200">{product.rating}</span>
-                      <span className="text-[10px] text-slate-500">({product.reviewCount})</span>
-                    </div>
-
-                    <div className="flex items-baseline gap-1.5">
-                      {product.originalPrice && (
-                        <span className="text-[10px] line-through text-slate-500">${product.originalPrice}</span>
-                      )}
-                      <span className="text-sm font-black text-blue-400">${product.price}</span>
-                    </div>
-                  </div>
-
-                  {/* Add direct addition button */}
-                  <button
-                    onClick={() => addToCart(product, 1)}
-                    className="w-full mt-3 py-2 bg-slate-800 hover:bg-blue-600 hover:text-slate-950 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer text-slate-300"
-                  >
-                    Quick Buy +
-                  </button>
-                </div>
-
-              </div>
-            );
-          })}
+          {hotDeals.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              isLiked={wishlist.includes(product.id)}
+              isInCompare={comparisonList.some(p => p.id === product.id)}
+              onNavigate={() => navigateTo('product', { id: product.id })}
+              onWishlist={() => toggleWishlist(product.id)}
+              onCompare={() => addToComparison(product)}
+              onQuickView={() => setQuickViewProduct(product)}
+              onAddToCart={() => addToCart(product, 1)}
+            />
+          ))}
         </div>
       </section>
 
