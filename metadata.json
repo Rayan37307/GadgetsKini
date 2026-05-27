@@ -1,0 +1,8 @@
+{
+  "name": "GadgetsKini",
+  "description": "A fully functional, visually polished ecommerce website for future-ready gadgets and tech devices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
