@@ -70,7 +70,7 @@ function AppContent() {
       <Header />
 
       {/* Primary views window */}
-      <div id="content-views-frame" className="flex-1 w-full flex flex-col pt-[125px]">
+      <div id="content-views-frame" className="flex-1 w-full flex flex-col pt-[140px]">
         {renderActiveView()}
       </div>
 
