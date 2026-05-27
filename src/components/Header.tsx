@@ -48,7 +48,7 @@ export default function Header() {
   const navLinks = [
     { label: 'Home', view: 'home' },
     { label: 'Shop', view: 'shop' },
-    { label: 'Brands', view: 'brands' },
+    // { label: 'Brands', view: 'brands' },
     { label: 'Our Contacts', view: 'contact' },
     { label: 'Delivery & Return', view: 'faq' },
   ];
