@@ -51,7 +51,7 @@ export default function Footer() {
               onClick={(e) => { e.preventDefault(); handleNav('home'); }}
               className="text-2xl font-display font-extrabold tracking-wider text-white"
             >
-              GADGETS<span className="text-amber-500 font-black">KINI</span>
+              GADGETS<span className="text-cyan-400 font-black">KINI</span>
             </a>
             <p className="text-slate-400 text-sm leading-relaxed">
               We live and breathe tech. Our curators handpick future-proof gadgets and genuine products for those who dare to step into tomorrow, today. Warranty secured and fast delivered.
@@ -104,7 +104,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('shop')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   All Products
                 </button>
@@ -112,7 +112,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('home', 'hot-deals')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   Deals & Discounts
                 </button>
@@ -120,7 +120,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('home', 'new-arrivals')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   New Arrivals
                 </button>
@@ -128,7 +128,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('shop')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   Bestsellers
                 </button>
@@ -143,7 +143,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('faq')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   FAQs
                 </button>
@@ -151,7 +151,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('contact')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   Contact HQ
                 </button>
@@ -159,7 +159,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('faq')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   Returns Info
                 </button>
@@ -167,7 +167,7 @@ export default function Footer() {
               <li>
                 <button 
                   onClick={() => handleNav('faq')} 
-                  className="hover:text-amber-500 transition-colors text-left"
+                  className="hover:text-cyan-400 transition-colors text-left"
                 >
                   Warranty Terms
                 </button>

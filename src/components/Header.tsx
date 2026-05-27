@@ -98,8 +98,8 @@ export default function Header() {
           onClick={(e) => { e.preventDefault(); navigateTo('home'); }} 
           className="flex items-center gap-2 group text-2xl font-display uppercase tracking-wider"
         >
-          <span className="font-extrabold text-white group-hover:text-amber-500 transition-colors">Gadgets</span>
-          <span className="font-black text-amber-500 group-hover:text-blue-500 transition-colors">Kini</span>
+          <span className="font-extrabold text-white group-hover:text-cyan-400 transition-colors">Gadgets</span>
+          <span className="font-black text-cyan-400 group-hover:text-blue-400 transition-colors">Kini</span>
         </a>
 
         {/* NAVIGATION DESKTOP */}

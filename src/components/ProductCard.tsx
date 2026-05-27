@@ -33,7 +33,7 @@ export default function ProductCard({
 
   if (variant === 'compact') {
     return (
-      <div className="bg-slate-800/20 border border-slate-850/60 rounded-xl p-4 flex flex-col justify-between shrink-0 w-64 group hover:border-slate-800 transition-colors">
+      <div className="bg-white/[0.02] backdrop-blur-sm border border-slate-800 rounded-xl p-4 flex flex-col justify-between shrink-0 w-64 group hover:border-blue-500/30 transition-colors">
         <div
           className="bg-slate-950 rounded-lg p-6 flex items-center justify-center h-40 relative cursor-pointer"
           onClick={onNavigate}
@@ -67,7 +67,7 @@ export default function ProductCard({
           <p className="text-sm font-bold text-cyan-400 mt-1">${product.price}</p>
           <button
             onClick={onAddToCart}
-            className="w-full mt-2 py-1.5 bg-slate-850 hover:bg-slate-800 text-[10px] font-bold uppercase rounded text-slate-300 transition-colors cursor-pointer"
+            className="w-full mt-2 py-1.5 bg-slate-800 hover:bg-blue-600 text-[10px] font-bold uppercase rounded text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
             Add +
           </button>
@@ -78,7 +78,7 @@ export default function ProductCard({
 
   return (
     <div
-      className={`bg-slate-900/60 border border-slate-800 hover:border-slate-700 p-4 rounded-2xl flex transition-all duration-300 relative ${
+      className={`bg-white/[0.02] backdrop-blur-sm border border-slate-800 hover:border-blue-500/30 p-4 rounded-2xl flex transition-all duration-300 relative hover:shadow-[0_0_30px_rgba(59,130,246,0.08)] ${
         listView ? 'flex-col sm:flex-row gap-6' : 'flex-col justify-between'
       }`}
     >
@@ -135,7 +135,7 @@ export default function ProductCard({
 
       <div className={`flex flex-col gap-2 flex-1 ${listView ? 'justify-center' : ''}`}>
         <div className="flex items-center justify-between">
-          <span className="text-[9px] font-mono tracking-widest text-[#06B6D4] uppercase">{product.brand}</span>
+          <span className="text-[9px] font-mono tracking-widest text-cyan-400 uppercase">{product.brand}</span>
           {!product.inStock && (
             <span className="text-[8px] bg-red-500/10 text-red-400 px-2 border border-red-500/10 rounded uppercase font-bold">
               Sold Out
@@ -176,7 +176,7 @@ export default function ProductCard({
         <button
           onClick={onAddToCart}
           disabled={!product.inStock}
-          className="w-full mt-4 py-2 bg-slate-800 disabled:opacity-45 hover:bg-blue-600 hover:text-slate-950 text-slate-200 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full mt-4 py-2 bg-blue-600 disabled:opacity-45 hover:bg-blue-500 hover:shadow-[0_0_24px_rgba(59,130,246,0.4)] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
         >
           Add to Cart
         </button>

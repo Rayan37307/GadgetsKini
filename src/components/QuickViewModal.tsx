@@ -57,14 +57,14 @@ export default function QuickViewModal() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.2 }}
-          className="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-2xl overflow-hidden relative shadow-2xl flex flex-col md:flex-row"
+          className="bg-slate-950/95 backdrop-blur-xl border border-slate-800 w-full max-w-4xl rounded-2xl overflow-hidden relative shadow-2xl flex flex-col md:flex-row"
           onClick={(e) => e.stopPropagation()}
         >
           {/* CLOSE BUTTON */}
           <button
             id="close-quickview-btn"
             onClick={() => setQuickViewProduct(null)}
-            className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-850 p-2 rounded-full cursor-pointer transition-colors z-10"
+            className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full cursor-pointer transition-colors z-10"
             aria-label="Close details dialog"
           >
             <X size={18} />
@@ -107,7 +107,7 @@ export default function QuickViewModal() {
 
               {/* PRICING */}
               <div className="flex items-baseline gap-3 mt-2">
-                <span className="text-2xl font-extrabold text-[#3B82F6]">${quickViewProduct.price}</span>
+                <span className="text-2xl font-extrabold text-blue-400">${quickViewProduct.price}</span>
                 {quickViewProduct.originalPrice && (
                   <>
                     <span className="text-sm line-through text-slate-500">${quickViewProduct.originalPrice}</span>
@@ -160,7 +160,7 @@ export default function QuickViewModal() {
                           key={opt}
                           onClick={() => setSelectedSize(opt)}
                           className={`px-3 py-1 bg-slate-800 text-xs font-semibold rounded cursor-pointer border transition-all ${
-                            isSelected ? 'border-cyan-500 text-cyan-400 glow-cyan' : 'border-slate-700 hover:border-slate-600'
+                            isSelected ? 'border-cyan-500 text-cyan-400 shadow-[0_0_16px_rgba(34,211,238,0.3)]' : 'border-slate-700 hover:border-slate-600'
                           }`}
                         >
                           {opt}

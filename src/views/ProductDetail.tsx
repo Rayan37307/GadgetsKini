@@ -392,7 +392,7 @@ export default function ProductDetail() {
           </div>
 
           {/* SECURE CHECKOUT SHIELD ICON */}
-          <div className="border border-slate-805 bg-slate-900/40 p-4 rounded-xl flex items-center gap-3">
+          <div className="border border-slate-800 bg-slate-900/40 p-4 rounded-xl flex items-center gap-3">
             <ShieldCheck size={20} className="text-emerald-400 shrink-0" />
             <div className="text-[10px] text-slate-400 leading-relaxed shrink">
               <p className="font-bold text-white uppercase tracking-wider mb-0.5">2-Year Comprehensive Mechanical Warranty</p>
@@ -479,7 +479,7 @@ export default function ProductDetail() {
           {activeTab === 'reviews' && (
             <div className="flex flex-col gap-6 max-w-3xl">
               {MOCK_REVIEWS.map((rev) => (
-                <div key={rev.id} className="p-5 border border-slate-805 bg-slate-900/20 rounded-xl flex flex-col gap-2 relative">
+                <div key={rev.id} className="p-5 border border-slate-800 bg-slate-900/20 rounded-xl flex flex-col gap-2 relative">
                   <div className="flex items-center justify-between border-b border-slate-850/50 pb-2">
                     <span className="text-sm font-semibold text-white">{rev.name}</span>
                     <span className="text-[10px] text-slate-500 font-mono">{rev.date}</span>
@@ -515,9 +515,9 @@ export default function ProductDetail() {
           {recommendations.map((rec) => {
             const hasSavings = !!rec.originalPrice;
             return (
-              <div 
+              <div
                 key={rec.id}
-                className="p-4 bg-slate-900/40 hover:bg-slate-900/80 border border-slate-850 hover:border-slate-750 p-4 rounded-xl flex flex-col justify-between group transition-all"
+                className="p-4 bg-white/[0.02] backdrop-blur-sm border border-slate-800 hover:border-blue-500/30 rounded-xl flex flex-col justify-between group transition-all"
               >
                 <div 
                   className="bg-slate-950 p-6 rounded-lg flex items-center justify-center cursor-pointer mb-3 aspect-square relative"

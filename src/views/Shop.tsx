@@ -14,7 +14,8 @@ import {
   X,
   Search,
   Check,
-  ChevronDown
+  ChevronDown,
+  SlidersHorizontal
 } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 
@@ -193,7 +194,7 @@ export default function Shop() {
       </div>
 
       {/* FILTER TOP HEADER BAR */}
-      <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-white/[0.02] backdrop-blur-md border border-slate-800 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex flex-col gap-1.5 md:text-left text-center">
           <h1 className="text-xl md:text-2xl font-bold font-display text-white">
             {activeCategories.length === 1 ? `Ecosystem: ${activeCategories[0]}` : 'Tech Shop Matrix'}
@@ -230,7 +231,7 @@ export default function Shop() {
           <div className="flex items-center border border-slate-700 rounded-lg overflow-hidden">
             <button
               onClick={() => setGridLayout(true)}
-              className={`p-2 cursor-pointer transition-colors ${gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-slate-800 text-slate-400 hover:text-white'}`}
+              className={`p-2 cursor-pointer transition-colors ${gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-white/[0.03] border border-slate-700 text-slate-400 hover:text-white'}`}
               title="Grid View"
               aria-label="Toggle grid layout display"
             >
@@ -238,7 +239,7 @@ export default function Shop() {
             </button>
             <button
               onClick={() => setGridLayout(false)}
-              className={`p-2 cursor-pointer transition-colors ${!gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-slate-800 text-slate-400 hover:text-white'}`}
+              className={`p-2 cursor-pointer transition-colors ${!gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-white/[0.03] border border-slate-700 text-slate-400 hover:text-white'}`}
               title="List View"
               aria-label="Toggle list layout display"
             >
@@ -259,12 +260,12 @@ export default function Shop() {
       <div className="flex flex-col md:flex-row gap-8 items-start">
         
         {/* ================= SIDEBAR FILTERS (DESKTOP) ================= */}
-        <aside id="shop-sidebar-filters" className="hidden md:flex flex-col gap-6 w-64 shrink-0 bg-slate-900/40 border border-slate-800 p-6 rounded-2xl sticky top-[95px]">
+        <aside id="shop-sidebar-filters" className="hidden md:flex flex-col gap-6 w-64 shrink-0 bg-white/[0.02] backdrop-blur-sm border border-slate-800 p-6 rounded-2xl sticky top-[95px]">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <h3 className="text-sm font-bold font-display uppercase tracking-wider text-white">Refine Criteria</h3>
-            <button 
+            <button
               onClick={clearAllFilters}
-              className="text-[10px] font-mono font-bold text-[#EF4444] hover:underline"
+              className="text-[10px] font-mono font-bold text-red-400 hover:underline"
             >
               Clear All
             </button>
@@ -414,7 +415,7 @@ export default function Shop() {
                   </div>
                   <button
                     onClick={() => setVisibleCount(prev => prev + 4)}
-                    className="mt-2 px-6 py-2.5 border border-slate-705 hover:border-slate-500 hover:bg-slate-800 text-xs text-white font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer"
+                    className="mt-2 px-6 py-2.5 border border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-xs text-white font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer"
                   >
                     Load More Gadgets
                   </button>

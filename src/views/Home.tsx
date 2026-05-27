@@ -210,7 +210,7 @@ export default function Home() {
       <section id="categories-strip" className="max-w-7xl mx-auto px-4 md:px-8 w-full">
         <div className="flex flex-col items-center gap-10">
           <div className="text-center flex flex-col gap-2">
-            <h2 className="text-xs font-mono tracking-widest text-[#06B6D4] uppercase">Hardware Matrices</h2>
+            <h2 className="text-xs font-mono tracking-widest text-cyan-400 uppercase">Hardware Matrices</h2>
             <p className="text-2xl md:text-3xl font-bold font-display text-white">Featured Ecosystems</p>
           </div>
 
@@ -219,9 +219,9 @@ export default function Home() {
               <button
                 key={catSpec.name}
                 onClick={() => handleCategoryClick(catSpec.name)}
-                className="bg-slate-800/50 hover:bg-slate-850 border border-slate-800 hover:border-blue-500/50 p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-3 transition-all-custom cursor-pointer group hover:scale-[1.03]"
+                className="bg-white/[0.02] backdrop-blur-sm border border-slate-800 hover:border-blue-500/30 p-6 rounded-2xl flex flex-col items-center justify-center text-center gap-3 transition-all-custom cursor-pointer group hover:scale-[1.03]"
               >
-                <div className="p-4 bg-slate-900 border border-slate-850/80 rounded-xl text-blue-400 group-hover:text-cyan-400 group-hover:bg-slate-900/40 transition-colors">
+                <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-400 group-hover:text-cyan-400 group-hover:bg-blue-500/20 transition-colors">
                   {catSpec.icon}
                 </div>
                 <div>
@@ -235,7 +235,8 @@ export default function Home() {
       </section>
 
       {/* 4. HOT DEALS PRODUCT GRID (With real counting timer clock) */}
-      <section id="hot-deals" className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10 scroll-mt-24">
+      <section id="hot-deals" className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10 scroll-mt-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10" />
         
         {/* Deal Title and dynamic tick timer */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-6">
@@ -283,10 +284,13 @@ export default function Home() {
 
       {/* 5. "WHY GADGETSKINI" TRUST BOCKS */}
       <section id="trust-banner" className="max-w-7xl mx-auto px-4 md:px-8 w-full">
-        <div className="bg-slate-900 border border-slate-800 p-8 md:p-12 rounded-3xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="relative overflow-hidden bg-gradient-to-tr from-blue-900/20 via-slate-900 to-indigo-950/20 border border-slate-800 p-8 md:p-12 rounded-3xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:80px_80px]" />
+          <div className="absolute top-20 left-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl -z-10" />
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10" />
           {trustNotes.map((note, i) => (
-            <div key={i} className="flex gap-4 items-start">
-              <div className="p-3 bg-slate-850 rounded-2xl border border-slate-800">
+            <div key={i} className="flex gap-4 items-start relative z-10">
+              <div className="p-3 bg-white/[0.04] backdrop-blur-sm rounded-2xl border border-blue-500/20">
                 {note.icon}
               </div>
               <div className="flex flex-col gap-1 shrink md:shrink-0 max-w-[200px]">
@@ -302,7 +306,7 @@ export default function Home() {
       <section id="new-arrivals" className="max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10">
         <div className="flex items-end justify-between border-b border-slate-800 pb-6 shrink-0">
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-mono tracking-widest text-[#06B6D4] uppercase">Brand New Drop Logs</span>
+            <span className="text-xs font-mono tracking-widest text-cyan-400 uppercase">Brand New Drop Logs</span>
             <h2 className="text-2xl md:text-3xl font-bold font-display text-white">Fresh Tech Drops</h2>
           </div>
           <button 

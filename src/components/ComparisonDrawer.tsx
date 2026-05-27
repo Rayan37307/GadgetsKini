@@ -20,7 +20,7 @@ export default function ComparisonDrawer() {
   );
 
   return (
-    <div id="comparison-dock" className="fixed bottom-0 left-0 w-full z-40 bg-slate-900/98 backdrop-blur-xl border-t border-slate-800 shadow-3xl text-slate-200">
+    <div id="comparison-dock" className="fixed bottom-0 left-0 w-full z-40 bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 shadow-3xl text-slate-200">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* COMPARED HEADINGS */}
@@ -99,7 +99,7 @@ export default function ComparisonDrawer() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="border-t border-slate-800 bg-[#090d16] overflow-x-auto"
+            className="border-t border-slate-800 bg-slate-950 overflow-x-auto"
           >
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
               <table className="w-full text-left text-xs min-w-[600px] border-collapse">
@@ -128,7 +128,7 @@ export default function ComparisonDrawer() {
                   <tr>
                     <td className="py-3.5 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Price point</td>
                     {comparisonList.map(p => (
-                      <td key={p.id} className="py-3.5 px-4 font-bold text-[#06B6D4] text-sm">
+                      <td key={p.id} className="py-3.5 px-4 font-bold text-cyan-400 text-sm">
                         ${p.price}
                         {p.originalPrice && (
                           <span className="text-[10px] line-through text-slate-600 block">
@@ -194,7 +194,7 @@ export default function ComparisonDrawer() {
                         <button
                           onClick={() => addToCart(p, 1)}
                           disabled={!p.inStock}
-                          className="w-full py-2.5 bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-200 text-xs font-bold rounded-lg transition-all uppercase tracking-wide cursor-pointer"
+                          className="w-full py-2.5 bg-blue-600 hover:bg-blue-500 hover:shadow-[0_0_16px_rgba(59,130,246,0.4)] disabled:opacity-40 text-white text-xs font-bold rounded-lg transition-all uppercase tracking-wide cursor-pointer"
                         >
                           Quick Cart
                         </button>
