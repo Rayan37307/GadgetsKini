@@ -65,12 +65,12 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-[#F8FAFC] flex flex-col font-sans transition-colors selection:bg-[#06B6D4] selection:text-slate-950">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans transition-colors selection:bg-[#06B6D4] selection:text-slate-950">
       {/* Sticky header controls */}
       <Header />
 
       {/* Primary views window */}
-      <div id="content-views-frame" className="flex-1 w-full flex flex-col">
+      <div id="content-views-frame" className="flex-1 w-full flex flex-col pt-[125px]">
         {renderActiveView()}
       </div>
 

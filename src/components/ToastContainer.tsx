@@ -31,9 +31,9 @@ function ToastItem({ id, message, type, onDismiss }: ToastItemProps) {
   };
 
   const borderColors = {
-    success: 'border-emerald-500/30 bg-slate-900/95 shadow-emerald-500/5',
-    warning: 'border-amber-500/30 bg-slate-900/95 shadow-amber-500/5',
-    error: 'border-rose-500/30 bg-slate-900/95 shadow-rose-500/5',
+    success: 'border-emerald-500/30 bg-white/95 shadow-emerald-500/5',
+    warning: 'border-amber-500/30 bg-white/95 shadow-amber-500/5',
+    error: 'border-rose-500/30 bg-white/95 shadow-rose-500/5',
   };
 
   return (
@@ -46,13 +46,13 @@ function ToastItem({ id, message, type, onDismiss }: ToastItemProps) {
     >
       <div className="flex items-center gap-3">
         {icons[type]}
-        <p className="text-slate-100 text-xs font-semibold leading-relaxed">
+        <p className="text-slate-800 text-xs font-semibold leading-relaxed">
           {message}
         </p>
       </div>
       <button 
         onClick={() => onDismiss(id)}
-        className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+        className="text-slate-500 hover:text-slate-700 transition-colors cursor-pointer"
         aria-label="Dismiss toast notification"
       >
         <X size={14} />

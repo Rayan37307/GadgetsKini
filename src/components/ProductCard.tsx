@@ -33,9 +33,9 @@ export default function ProductCard({
 
   if (variant === 'compact') {
     return (
-      <div className="bg-white/[0.02] backdrop-blur-sm border border-slate-800 rounded-xl p-4 flex flex-col justify-between shrink-0 w-64 group hover:border-blue-500/30 transition-colors">
+      <div className="bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl p-4 flex flex-col justify-between shrink-0 w-64 group hover:border-blue-500/30 transition-colors">
         <div
-          className="bg-slate-950 rounded-lg p-6 flex items-center justify-center h-40 relative cursor-pointer"
+          className="bg-white rounded-lg p-6 flex items-center justify-center h-40 relative cursor-pointer"
           onClick={onNavigate}
         >
           <img
@@ -49,8 +49,8 @@ export default function ProductCard({
           </div>
           <button
             onClick={(e) => { e.stopPropagation(); onWishlist(); }}
-            className={`absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/60 border cursor-pointer transition-colors ${
-              isLiked ? 'border-rose-500 text-rose-500' : 'border-slate-800 text-slate-500 hover:text-white'
+            className={`absolute top-2 right-2 p-1.5 rounded-full bg-white/60 border cursor-pointer transition-colors ${
+              isLiked ? 'border-rose-500 text-rose-500' : 'border-slate-200 text-slate-500 hover:text-slate-700'
             }`}
           >
             <Heart size={12} fill={isLiked ? 'currentColor' : 'none'} />
@@ -60,14 +60,14 @@ export default function ProductCard({
           <span className="text-[9px] font-mono tracking-widest text-slate-500">{product.brand}</span>
           <p
             onClick={onNavigate}
-            className="font-display font-medium text-xs text-white hover:text-cyan-400 cursor-pointer truncate"
+            className="font-display font-medium text-xs text-slate-900 hover:text-cyan-400 cursor-pointer truncate"
           >
             {product.name}
           </p>
           <p className="text-sm font-bold text-cyan-400 mt-1">${product.price}</p>
           <button
             onClick={onAddToCart}
-            className="w-full mt-2 py-1.5 bg-slate-800 hover:bg-blue-600 text-[10px] font-bold uppercase rounded text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="w-full mt-2 py-1.5 bg-slate-100 hover:bg-blue-600 text-[10px] font-bold uppercase rounded text-slate-600 hover:text-white transition-colors cursor-pointer"
           >
             Add +
           </button>
@@ -78,7 +78,7 @@ export default function ProductCard({
 
   return (
     <div
-      className={`bg-white/[0.02] backdrop-blur-sm border border-slate-800 hover:border-blue-500/30 p-4 rounded-2xl flex transition-all duration-300 relative hover:shadow-[0_0_30px_rgba(59,130,246,0.08)] ${
+      className={`bg-slate-50 backdrop-blur-sm border border-slate-200 hover:border-blue-500/30 p-4 rounded-2xl flex transition-all duration-300 relative hover:shadow-[0_0_30px_rgba(59,130,246,0.08)] ${
         listView ? 'flex-col sm:flex-row gap-6' : 'flex-col justify-between'
       }`}
     >
@@ -91,8 +91,8 @@ export default function ProductCard({
       <div className="absolute top-4 right-4 z-10 flex gap-1.5">
         <button
           onClick={onWishlist}
-          className={`p-2 bg-slate-900/80 rounded-full border border-slate-800 transition-colors cursor-pointer ${
-            isLiked ? 'text-rose-500 border-rose-500/20' : 'text-slate-400 hover:text-white'
+          className={`p-2 bg-white/80 rounded-full border border-slate-200 transition-colors cursor-pointer ${
+            isLiked ? 'text-rose-500 border-rose-500/20' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           <Heart size={14} fill={isLiked ? 'currentColor' : 'none'} />
@@ -100,8 +100,8 @@ export default function ProductCard({
         {onCompare && (
           <button
             onClick={onCompare}
-            className={`p-2 bg-slate-900/80 rounded-full border border-slate-800 transition-colors cursor-pointer ${
-              isInCompare ? 'text-cyan-400 border-cyan-500/20' : 'text-slate-400 hover:text-blue-400'
+            className={`p-2 bg-white/80 rounded-full border border-slate-200 transition-colors cursor-pointer ${
+              isInCompare ? 'text-cyan-400 border-cyan-500/20' : 'text-slate-500 hover:text-blue-400'
             }`}
           >
             <SlidersHorizontal size={14} />
@@ -110,7 +110,7 @@ export default function ProductCard({
       </div>
 
       <div
-        className={`bg-slate-950 rounded-xl flex items-center justify-center cursor-pointer relative group/img overflow-hidden ${
+        className={`bg-white rounded-xl flex items-center justify-center cursor-pointer relative group/img overflow-hidden ${
           listView ? 'w-full sm:w-48 aspect-square p-6 shrink-0' : 'aspect-square mb-4 p-8'
         }`}
         onClick={onNavigate}
@@ -122,10 +122,10 @@ export default function ProductCard({
           referrerPolicy="no-referrer"
         />
         {onQuickView && (
-          <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="absolute inset-0 bg-white/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center">
             <button
               onClick={(e) => { e.stopPropagation(); onQuickView(); }}
-              className="px-3 py-1.5 bg-slate-900 border border-slate-700 rounded text-[10px] text-white font-bold tracking-wider flex items-center gap-1 cursor-pointer"
+              className="px-3 py-1.5 bg-slate-50 border border-slate-300 rounded text-[10px] text-slate-900 font-bold tracking-wider flex items-center gap-1 cursor-pointer"
             >
               <Eye size={12} /> Spec View
             </button>
@@ -145,14 +145,14 @@ export default function ProductCard({
 
         <h3
           onClick={onNavigate}
-          className="font-display font-semibold text-sm text-slate-100 hover:text-blue-400 cursor-pointer transition-colors line-clamp-1"
+          className="font-display font-semibold text-sm text-slate-800 hover:text-blue-400 cursor-pointer transition-colors line-clamp-1"
         >
           {product.name}
         </h3>
 
         <div className="flex items-center gap-1.5 text-[10px]">
           <Star fill="currentColor" size={12} className="text-amber-500" />
-          <span className="font-bold text-slate-300">{product.rating}</span>
+          <span className="font-bold text-slate-600">{product.rating}</span>
           <span className="text-slate-600">•</span>
           <span className="text-slate-500">({product.reviewCount})</span>
         </div>
@@ -165,12 +165,12 @@ export default function ProductCard({
         </div>
 
         {listView && product.shortFeatures.length > 0 && (
-          <ul className="hidden md:flex flex-col gap-1 text-[10px] text-slate-400 mt-2 list-inside list-disc">
+          <ul className="hidden md:flex flex-col gap-1 text-[10px] text-slate-500 mt-2 list-inside list-disc">
             {product.shortFeatures.slice(0, 3).map((f, i) => <li key={i}>{f}</li>)}
           </ul>
         )}
         {listView && product.shortFeatures.length === 0 && product.description[0] && (
-          <p className="hidden md:block text-[10px] text-slate-400 mt-2 line-clamp-2">{product.description[0]}</p>
+          <p className="hidden md:block text-[10px] text-slate-500 mt-2 line-clamp-2">{product.description[0]}</p>
         )}
 
         <button

@@ -3,289 +3,308 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
-import { 
-  ShoppingBag, 
-  Heart, 
-  User, 
-  Search, 
-  Menu, 
-  X, 
+import { CartItem } from '../types';
+import {
+  ShoppingBag,
+  Heart,
+  User,
+  Search,
+  Menu,
+  X,
+  Phone,
+  Globe,
   SlidersHorizontal,
-  Layers
+  ChevronDown,
 } from 'lucide-react';
 
 export default function Header() {
-  const { 
-    currentView, 
-    cart, 
-    wishlist, 
-    searchQuery, 
-    setSearchQuery, 
+  const {
+    currentView,
+    cart,
+    wishlist,
+    searchQuery,
+    setSearchQuery,
     navigateTo,
-    userProfile
+    userProfile,
   } = useApp();
 
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  
-  // Track window scroll to switch backdrop blur intensities
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
-  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartCount = cart.reduce((t: number, i: CartItem) => t + i.quantity, 0);
+  const cartTotal = cart
+    .reduce((t: number, i: CartItem) => t + i.product.price * i.quantity, 0)
+    .toFixed(2);
   const wishlistCount = wishlist.length;
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigateTo('shop');
-      setSearchOpen(false);
     }
   };
 
   const navLinks = [
-    { label: 'Home', href: '#home', view: 'home' },
-    { label: 'Shop', href: '#shop', view: 'shop' },
-    { label: 'Deals', href: '#home', scrollTarget: 'hot-deals' },
-    { label: 'Brands', href: '#brands', view: 'brands' },
-    { label: 'About', href: '#about', view: 'about-us' },
-    { label: 'Contact', href: '#contact', view: 'contact' },
-    { label: 'FAQ', href: '#faq', view: 'faq' },
+    { label: 'Home', view: 'home' },
+    { label: 'Shop', view: 'shop' },
+    { label: 'Brands', view: 'brands' },
+    { label: 'Our Contacts', view: 'contact' },
+    { label: 'Delivery & Return', view: 'faq' },
   ];
 
-  const handleLinkClick = (link: typeof navLinks[0]) => {
+  const handleNav = (link: typeof navLinks[0]) => {
     setMobileMenuOpen(false);
-    
     if (link.scrollTarget) {
       if (currentView !== 'home') {
         navigateTo('home');
-        // Wait for render, then scroll
         setTimeout(() => {
           const el = document.getElementById(link.scrollTarget!);
           if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 100);
+        }, 120);
       } else {
         const el = document.getElementById(link.scrollTarget);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    } else if (link.view) {
+    } else {
       navigateTo(link.view);
     }
   };
 
   return (
-    <header 
-      id="main-header"
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-[#0F172AD8] backdrop-blur-md border-b border-slate-800 py-3 shadow-lg' 
-          : 'bg-transparent border-b border-transparent py-5'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
-        {/* LOGO */}
-        <a 
-          id="header-logo"
-          href="#home" 
-          onClick={(e) => { e.preventDefault(); navigateTo('home'); }} 
-          className="flex items-center gap-2 group text-2xl font-display uppercase tracking-wider"
-        >
-          <span className="font-extrabold text-white group-hover:text-cyan-400 transition-colors">Gadgets</span>
-          <span className="font-black text-cyan-400 group-hover:text-blue-400 transition-colors">Kini</span>
-        </a>
+    <header id="main-header" className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm">
 
-        {/* NAVIGATION DESKTOP */}
-        <nav id="header-nav-desktop" className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => {
-            const isActive = currentView === link.view;
-            return (
+      {/* ── ROW 1: Logo · Search · Support ───────────────────────────── */}
+      <div className="border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center gap-4 md:gap-6">
+
+          {/* Logo */}
+          <a
+            id="header-logo"
+            href="#home"
+            onClick={e => { e.preventDefault(); navigateTo('home'); }}
+            className="flex items-center gap-2 shrink-0 group"
+          >
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-700 transition-colors">
+              <span className="text-white font-black text-sm leading-none">G</span>
+            </div>
+            <span className="text-lg md:text-xl font-black text-slate-900 tracking-tight">
+              GadgetsKini<span className="text-blue-600">.</span>
+            </span>
+          </a>
+
+          {/* Search bar */}
+          <form
+            id="search-form"
+            onSubmit={handleSearchSubmit}
+            className="flex-1 max-w-2xl"
+          >
+            <div className="flex items-center border border-slate-300 rounded-full bg-white hover:border-blue-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all overflow-hidden">
+              <input
+                type="text"
+                placeholder="Search for products"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="flex-1 px-5 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 outline-none bg-transparent min-w-0"
+              />
               <button
-                key={link.label}
-                id={`nav-${link.label.toLowerCase()}`}
-                onClick={() => handleLinkClick(link)}
-                className={`text-sm font-medium tracking-wide hover:text-blue-400 transition-colors cursor-pointer relative py-1 ${
-                  isActive ? 'text-blue-400' : 'text-slate-300'
-                }`}
+                type="submit"
+                className="m-1 w-9 h-9 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center text-white shrink-0 transition-colors cursor-pointer"
               >
-                {link.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-blue-500 rounded-full" />
-                )}
+                <Search size={15} />
               </button>
-            );
-          })}
-        </nav>
+            </div>
+          </form>
 
-        {/* RIGHT ACTION BUTTONS */}
-        <div id="header-actions" className="flex items-center gap-4">
-          
-          {/* SEARCH BAR (EXPANDABLE) */}
-          <div className="relative flex items-center">
-            {searchOpen && (
-              <form 
-                id="search-form"
-                onSubmit={handleSearchSubmit}
-                className="absolute right-8 top-1/2 -translate-y-1/2 w-48 md:w-64 animate-fade-in"
-              >
-                <input
-                  type="text"
-                  placeholder="Search tech drops..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-slate-800/95 text-xs text-white border border-slate-700 rounded-full py-1.5 pl-3 pr-8 focus:outline-none focus:border-blue-500"
-                  autoFocus
-                />
-                <button 
-                  type="submit" 
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
-                >
-                  <Search size={14} />
-                </button>
-              </form>
-            )}
-            <button
-              id="btn-toggle-search"
-              aria-label="Toggle search input"
-              onClick={() => setSearchOpen(prev => !prev)}
-              className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full transition-all cursor-pointer"
-            >
-              {searchOpen ? <X size={20} /> : <Search size={20} />}
-            </button>
+          {/* Support info – desktop only */}
+          <div className="hidden xl:flex items-center gap-5 shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-slate-50">
+                <Phone size={18} className="text-slate-500" />
+              </div>
+              <div className="leading-tight">
+                <p className="text-[11px] font-bold text-slate-800">24 Support</p>
+                <p className="text-[11px] text-blue-600 font-semibold">+1 212-334-0212</p>
+              </div>
+            </div>
+            <div className="w-px h-8 bg-slate-200" />
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-slate-50">
+                <Globe size={18} className="text-slate-500" />
+              </div>
+              <div className="leading-tight">
+                <p className="text-[11px] font-bold text-slate-800">Worldwide</p>
+                <p className="text-[11px] text-blue-600 font-semibold">Free Shipping</p>
+              </div>
+            </div>
           </div>
 
-          {/* WISHLIST ICON WITH BADGE */}
-          <button
-            id="btn-wishlist"
-            aria-label="View wishlist"
-            onClick={() => navigateTo('account')}
-            className="hidden lg:relative lg:inline-flex p-2 text-slate-300 hover:text-rose-400 hover:bg-slate-800 rounded-full transition-all cursor-pointer"
-          >
-            <Heart size={20} />
-            {wishlistCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-red-500 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-ping-once">
-                {wishlistCount}
-              </span>
-            )}
-          </button>
-
-          {/* CART ICON WITH BADGE */}
-          <button
-            id="btn-cart"
-            aria-label="View cart"
-            onClick={() => navigateTo('cart')}
-            className="hidden lg:relative lg:inline-flex p-2 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all cursor-pointer"
-          >
-            <ShoppingBag size={20} />
-            {cartCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 bg-cyan-500 text-slate-950 text-[10px] font-extrabold h-4 w-4 rounded-full flex items-center justify-center animate-bounce-short">
-                {cartCount}
-              </span>
-            )}
-          </button>
-
-          {/* ACCOUNT BUTTON */}
-          <button
-            id="btn-account"
-            aria-label="View account panel"
-            onClick={() => navigateTo(userProfile ? 'account' : 'login')}
-            className="hidden lg:flex p-2 text-slate-300 hover:text-blue-400 hover:bg-slate-800 rounded-full transition-all items-center gap-1.5 cursor-pointer max-w-[120px]"
-          >
-            <User size={20} />
-            {userProfile && (
-              <span className="hidden md:inline text-xs font-semibold truncate text-slate-300 max-w-[70px]">
-                {userProfile.name.split(' ')[0]}
-              </span>
-            )}
-          </button>
-
-          {/* MOBILE HAMBURGER BUTTON */}
+          {/* Mobile hamburger */}
           <button
             id="btn-toggle-mobile-menu"
-            aria-label="Toggle mobile navigation menu"
-            onClick={() => setMobileMenuOpen(prev => !prev)}
-            className="p-2 text-slate-300 hover:text-white hover:bg-slate-800 rounded-full lg:hidden block cursor-pointer"
+            aria-label="Toggle menu"
+            onClick={() => setMobileMenuOpen(p => !p)}
+            className="lg:hidden p-2 text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE DRAWER (FULL SCREEN SLIDE DOWN) */}
-      {mobileMenuOpen && (
-        <div id="mobile-drawer" className="lg:hidden absolute top-full left-0 w-full bg-slate-900/98 backdrop-blur-xl border-b border-slate-800 py-6 px-4 flex flex-col gap-5 animate-slide-down">
-          <div className="flex flex-col gap-1.5">
-            {navLinks.map((link) => {
-              const isActive = currentView === link.view;
+      {/* ── ROW 2: Categories · Nav · Actions ────────────────────────── */}
+      <div className="hidden lg:block bg-slate-50/60 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center h-[50px] gap-4">
+
+          {/* All Categories pill */}
+          <button
+            onClick={() => navigateTo('shop')}
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-full transition-colors cursor-pointer shrink-0"
+          >
+            <Menu size={15} />
+            All Categories
+            <ChevronDown size={13} className="opacity-70" />
+          </button>
+
+          {/* Nav links */}
+          <nav id="header-nav-desktop" className="flex items-center gap-1">
+            {navLinks.map(link => {
+              const active = currentView === link.view;
               return (
                 <button
                   key={link.label}
-                  onClick={() => handleLinkClick(link)}
-                  className={`py-2 text-left font-display text-base tracking-wide border-b border-slate-800/40 hover:pl-2 transition-all hover:text-[#06B6D4] ${
-                    isActive ? 'text-[#06B6D4] font-bold' : 'text-slate-300'
+                  id={`nav-${link.label.toLowerCase().replace(/\s/g, '-')}`}
+                  onClick={() => handleNav(link)}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-colors cursor-pointer whitespace-nowrap ${
+                    active
+                      ? 'text-blue-600 bg-blue-50 font-semibold'
+                      : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100'
                   }`}
                 >
                   {link.label}
                 </button>
               );
             })}
+          </nav>
+
+          {/* Spacer */}
+          <div className="flex-1" />
+
+          {/* Currency tag */}
+          <div className="flex items-center gap-3 text-xs text-slate-500 font-semibold shrink-0">
+            <button className="flex items-center gap-1 hover:text-slate-700 transition-colors cursor-pointer">
+              USA <ChevronDown size={11} />
+            </button>
+            <button className="flex items-center gap-1 hover:text-slate-700 transition-colors cursor-pointer">
+              USD <ChevronDown size={11} />
+            </button>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 border-t border-slate-800 pt-5">
-            {/* 1. Account Action button */}
+          {/* Action icons */}
+          <div id="header-actions" className="flex items-center gap-1 shrink-0">
+
+            {/* Account */}
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                navigateTo(userProfile ? 'account' : 'login');
-              }}
-              className="flex flex-col items-center justify-center py-3 bg-slate-950/50 hover:bg-slate-800 border border-slate-800/80 rounded-xl transition-all cursor-pointer group text-slate-300"
+              id="btn-account"
+              aria-label="Account"
+              onClick={() => navigateTo(userProfile ? 'account' : 'login')}
+              className="p-2 text-slate-500 hover:text-blue-600 transition-colors cursor-pointer relative"
+              title={userProfile ? userProfile.name : 'Sign In'}
             >
-              <User size={18} className="group-hover:text-blue-400 transition-colors" />
-              <span className="text-[10px] font-medium tracking-wide mt-1 text-slate-400 group-hover:text-white truncate max-w-full px-1">
-                {userProfile ? userProfile.name.split(' ')[0] : 'Profile / Login'}
+              <User size={20} />
+            </button>
+
+            {/* Compare (links to shop) */}
+            <button
+              id="btn-compare"
+              aria-label="Compare"
+              onClick={() => navigateTo('shop')}
+              className="p-2 text-slate-500 hover:text-blue-600 transition-colors cursor-pointer relative"
+            >
+              <SlidersHorizontal size={20} />
+              <span className="absolute -top-0.5 -right-0.5 bg-blue-600 text-white text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center leading-none">
+                0
               </span>
             </button>
 
-            {/* 2. Wishlist Action button */}
+            {/* Wishlist */}
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                navigateTo('account');
-              }}
-              className="flex flex-col items-center justify-center py-3 bg-slate-950/50 hover:bg-slate-800 border border-slate-800/80 rounded-xl transition-all cursor-pointer group text-slate-300 relative"
+              id="btn-wishlist"
+              aria-label="Wishlist"
+              onClick={() => navigateTo('account')}
+              className="p-2 text-slate-500 hover:text-blue-600 transition-colors cursor-pointer relative"
             >
-              <Heart size={18} className="group-hover:text-rose-400 transition-colors" />
-              <span className="text-[10px] font-medium tracking-wide mt-1 text-slate-400 group-hover:text-white">
-                Wishlist
+              <Heart size={20} />
+              <span className={`absolute -top-0.5 -right-0.5 bg-blue-600 text-white text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center leading-none ${wishlistCount === 0 ? 'opacity-60' : ''}`}>
+                {wishlistCount}
               </span>
+            </button>
+
+            {/* Cart pill */}
+            <button
+              id="btn-cart"
+              aria-label="Cart"
+              onClick={() => navigateTo('cart')}
+              className="ml-1 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white rounded-full pl-2.5 pr-4 py-1.5 transition-colors cursor-pointer"
+            >
+              <div className="relative">
+                <ShoppingBag size={16} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1.5 -right-1.5 bg-white text-blue-600 text-[8px] font-black h-3.5 w-3.5 rounded-full flex items-center justify-center leading-none">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
+              <span className="text-xs font-bold">${cartTotal}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── MOBILE DRAWER ─────────────────────────────────────────────── */}
+      {mobileMenuOpen && (
+        <div id="mobile-drawer" className="lg:hidden bg-white border-t border-slate-200 py-4 px-4 flex flex-col gap-1 shadow-lg">
+          {navLinks.map(link => (
+            <button
+              key={link.label}
+              onClick={() => handleNav(link)}
+              className={`text-left text-sm py-2.5 px-3 rounded-lg transition-colors ${
+                currentView === link.view
+                  ? 'text-blue-600 bg-blue-50 font-semibold'
+                  : 'text-slate-700 hover:bg-slate-50 hover:text-blue-600'
+              }`}
+            >
+              {link.label}
+            </button>
+          ))}
+
+          <div className="border-t border-slate-100 mt-2 pt-3 grid grid-cols-3 gap-2">
+            <button
+              onClick={() => { setMobileMenuOpen(false); navigateTo(userProfile ? 'account' : 'login'); }}
+              className="flex flex-col items-center gap-1.5 py-3 bg-slate-50 hover:bg-blue-50 rounded-xl text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              <User size={18} />
+              <span className="text-[10px] font-semibold">Account</span>
+            </button>
+            <button
+              onClick={() => { setMobileMenuOpen(false); navigateTo('account'); }}
+              className="flex flex-col items-center gap-1.5 py-3 bg-slate-50 hover:bg-blue-50 rounded-xl text-slate-500 hover:text-blue-600 transition-colors cursor-pointer relative"
+            >
+              <Heart size={18} />
+              <span className="text-[10px] font-semibold">Wishlist</span>
               {wishlistCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[9px] font-bold h-4 w-4 rounded-full flex items-center justify-center z-10">
+                <span className="absolute top-1.5 right-3 bg-blue-600 text-white text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
             </button>
-
-            {/* 3. Cart Action button with total checkout label */}
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                navigateTo('cart');
-              }}
-              className="flex flex-col items-center justify-center py-3 bg-[#06B6D4]/10 hover:bg-[#06B6D4]/20 border border-[#06B6D4]/20 rounded-xl transition-all cursor-pointer group text-cyan-400 relative"
+              onClick={() => { setMobileMenuOpen(false); navigateTo('cart'); }}
+              className="flex flex-col items-center gap-1.5 py-3 bg-blue-600 hover:bg-blue-700 rounded-xl text-white transition-colors cursor-pointer relative"
             >
               <ShoppingBag size={18} />
-              <span className="text-[10px] font-bold tracking-wide mt-1">
-                Cart
-              </span>
+              <span className="text-[10px] font-bold">${cartTotal}</span>
               {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-slate-950 text-[9px] font-extrabold h-4 w-4 rounded-full flex items-center justify-center z-10">
+                <span className="absolute top-1.5 right-3 bg-white text-blue-600 text-[8px] font-black h-4 w-4 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}

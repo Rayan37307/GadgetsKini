@@ -19,9 +19,9 @@ export default function NotFound() {
       </div>
 
       <div className="flex flex-col gap-2.5 z-10">
-        <h1 className="text-5xl font-black font-display tracking-tight text-white font-mono">404</h1>
+        <h1 className="text-5xl font-black font-display tracking-tight text-slate-900 font-mono">404</h1>
         <h2 className="text-md font-bold uppercase tracking-widest text-[#06B6D4] font-display">Endpoint not mapped</h2>
-        <p className="text-xs text-slate-400 leading-relaxed max-w-sm mx-auto">
+        <p className="text-xs text-slate-500 leading-relaxed max-w-sm mx-auto">
           The requested hash coordinate is unpopulated or has been transitioned off GadgetsKini servers. Let's redirect your browser back to secure pipelines.
         </p>
       </div>
@@ -29,14 +29,14 @@ export default function NotFound() {
       <div className="flex flex-col sm:flex-row gap-3 w-full justify-center z-10 pt-2">
         <button
           onClick={() => navigateTo('home')}
-          className="px-5 py-3 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5"
+          className="px-5 py-3 border border-slate-300 hover:border-slate-500 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5"
         >
           <ArrowLeft size={14} /> Back Home
         </button>
 
         <button
           onClick={() => navigateTo('shop')}
-          className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-slate-950 hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 glow-blue"
+          className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 glow-blue"
         >
           <Search size={14} /> Browse Catalog
         </button>

@@ -54,21 +54,21 @@ export default function FAQ() {
   }, [activeGroup, searchQuery]);
 
   return (
-    <div id="faq-view-container" className="pt-[110px] pb-24 max-w-4xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10">
+    <div id="faq-view-container" className="pb-24 max-w-4xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10">
       
       {/* 1. TEXT HEADER */}
       <div className="text-center flex flex-col gap-3">
         <span className="text-xs font-mono font-bold tracking-widest text-blue-400 uppercase">GADGETSKINI CUSTOMER PORTAL</span>
-        <h1 className="text-3xl md:text-5xl font-black font-display text-white uppercase tracking-tight">
+        <h1 className="text-3xl md:text-5xl font-black font-display text-slate-900 uppercase tracking-tight">
           Help Desk Center
         </h1>
-        <p className="text-xs text-slate-400 max-w-lg mx-auto leading-relaxed">
+        <p className="text-xs text-slate-500 max-w-lg mx-auto leading-relaxed">
           Search answers related to wholesale secure delivery, custom returns policies, and credit card gateway compliance systems.
         </p>
       </div>
 
       {/* 2. SEARCH & GROUP CONTROLS BAR */}
-      <div className="flex flex-col md:flex-row gap-4 items-center justify-between border-b border-slate-850 pb-6">
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between border-b border-slate-200 pb-6">
         
         {/* Search Input bar */}
         <div className="relative w-full md:w-80 text-left">
@@ -77,7 +77,7 @@ export default function FAQ() {
             placeholder="Search FAQs e.g. TECH10"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-900 text-xs border border-slate-750 text-white rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-blue-500"
+            className="w-full bg-slate-50 text-xs border border-slate-750 text-slate-900 rounded-lg pl-9 pr-4 py-2.5 outline-none focus:border-blue-500"
           />
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-505" />
         </div>
@@ -91,7 +91,7 @@ export default function FAQ() {
                 key={grp}
                 onClick={() => { setActiveGroup(grp); setExpandedKeys([]); }}
                 className={`px-3 py-1.5 rounded-lg text-[10px] font-bold uppercase tracking-wider whitespace-nowrap cursor-pointer border ${
-                  isSel ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400' : 'bg-slate-900 border-slate-805 text-slate-400 hover:text-white'
+                  isSel ? 'bg-cyan-500/10 border-cyan-500 text-cyan-400' : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {grp}
@@ -111,7 +111,7 @@ export default function FAQ() {
         ) : (
           filteredFAQs.map((groupBlob) => (
             <div key={groupBlob.group} className="flex flex-col gap-4">
-              <h3 className="text-xs font-mono font-bold tracking-widest text-[#06B6D4] uppercase border-b border-slate-850 pb-2">
+              <h3 className="text-xs font-mono font-bold tracking-widest text-[#06B6D4] uppercase border-b border-slate-200 pb-2">
                 {groupBlob.group}
               </h3>
 
@@ -122,15 +122,15 @@ export default function FAQ() {
                   return (
                     <div 
                       key={idx}
-                      className="border border-slate-805 bg-slate-900/20 rounded-xl overflow-hidden transition-all duration-300"
+                      className="border border-slate-200 bg-white/20 rounded-xl overflow-hidden transition-all duration-300"
                     >
                       {/* Accordion header button */}
                       <button
                         onClick={() => toggleExpand(itemKey)}
-                        className="w-full p-4 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-900/40 text-xs text-white"
+                        className="w-full p-4 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-white/40 text-xs text-slate-900"
                         aria-expanded={isExpanded}
                       >
-                        <span className="font-semibold font-display tracking-tight text-white">{item.q}</span>
+                        <span className="font-semibold font-display tracking-tight text-slate-900">{item.q}</span>
                         <ChevronDown 
                           size={14} 
                           className={`text-[#06B6D4] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`} 
@@ -140,10 +140,10 @@ export default function FAQ() {
                       {/* Accordion expand block */}
                       <div 
                         className={`transition-all duration-300 overflow-hidden ${
-                          isExpanded ? 'max-h-56 border-t border-slate-855' : 'max-h-0'
+                          isExpanded ? 'max-h-56 border-t border-slate-200' : 'max-h-0'
                         }`}
                       >
-                        <p className="p-4 bg-slate-950/40 text-slate-400 text-xs leading-relaxed font-sans select-text">
+                        <p className="p-4 bg-white/40 text-slate-500 text-xs leading-relaxed font-sans select-text">
                           {item.a}
                         </p>
                       </div>
@@ -157,20 +157,20 @@ export default function FAQ() {
       </div>
 
       {/* 4. RED FOOTER CALL TO ACTION STILL HAVE QUESTIONS BAR */}
-      <section className="bg-slate-900 border border-slate-800 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <section className="bg-slate-50 border border-slate-200 p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         <div className="flex items-center gap-4">
           <div className="p-3 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-xl shrink-0 hidden sm:block">
             <MessageSquare size={20} />
           </div>
           <div>
-            <h4 className="text-sm font-bold font-display uppercase tracking-wider text-white">Still have questions?</h4>
-            <p className="text-xs text-slate-400 mt-1">Our live product curators are accessible 24/7 for tailored hardware evaluations.</p>
+            <h4 className="text-sm font-bold font-display uppercase tracking-wider text-slate-900">Still have questions?</h4>
+            <p className="text-xs text-slate-500 mt-1">Our live product curators are accessible 24/7 for tailored hardware evaluations.</p>
           </div>
         </div>
 
         <button
           onClick={() => navigateTo('contact')}
-          className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-slate-950 hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-1 cursor-pointer font-display scale-100 hover:scale-103 duration-200"
+          className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all flex items-center gap-1 cursor-pointer font-display scale-100 hover:scale-103 duration-200"
         >
           Dispatch Wire help <ArrowRight size={14} />
         </button>

@@ -49,7 +49,7 @@ export default function QuickViewModal() {
     <AnimatePresence>
       <div 
         id="quick-view-overlay" 
-        className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[999] flex items-center justify-center p-4 overflow-y-auto"
+        className="fixed inset-0 bg-white/80 backdrop-blur-sm z-[999] flex items-center justify-center p-4 overflow-y-auto"
         onClick={() => setQuickViewProduct(null)}
       >
         <motion.div
@@ -57,21 +57,21 @@ export default function QuickViewModal() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.2 }}
-          className="bg-slate-950/95 backdrop-blur-xl border border-slate-800 w-full max-w-4xl rounded-2xl overflow-hidden relative shadow-2xl flex flex-col md:flex-row"
+          className="bg-white/95 backdrop-blur-xl border border-slate-200 w-full max-w-4xl rounded-2xl overflow-hidden relative shadow-2xl flex flex-col md:flex-row"
           onClick={(e) => e.stopPropagation()}
         >
           {/* CLOSE BUTTON */}
           <button
             id="close-quickview-btn"
             onClick={() => setQuickViewProduct(null)}
-            className="absolute top-4 right-4 text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full cursor-pointer transition-colors z-10"
+            className="absolute top-4 right-4 text-slate-500 hover:text-slate-700 bg-slate-100 p-2 rounded-full cursor-pointer transition-colors z-10"
             aria-label="Close details dialog"
           >
             <X size={18} />
           </button>
 
           {/* IMAGE PORTION */}
-          <div className="w-full md:w-1/2 bg-slate-950 p-8 flex items-center justify-center relative min-h-[300px]">
+          <div className="w-full md:w-1/2 bg-white p-8 flex items-center justify-center relative min-h-[300px]">
             <img
               src={quickViewProduct.image}
               alt={quickViewProduct.name}
@@ -91,7 +91,7 @@ export default function QuickViewModal() {
               <span id="quickview-brand-tag" className="text-xs font-mono tracking-widest text-blue-400 uppercase">
                 {quickViewProduct.brand}
               </span>
-              <h2 id="quickview-title" className="text-xl md:text-2xl font-bold font-display text-white tracking-tight leading-snug">
+              <h2 id="quickview-title" className="text-xl md:text-2xl font-bold font-display text-slate-900 tracking-tight leading-snug">
                 {quickViewProduct.name}
               </h2>
 
@@ -100,9 +100,9 @@ export default function QuickViewModal() {
                 <div role="img" aria-label={`Rating: ${quickViewProduct.rating} starts`} className="flex text-amber-400">
                   <Star fill="currentColor" size={14} />
                 </div>
-                <span className="text-xs font-bold text-slate-100">{quickViewProduct.rating}</span>
+                <span className="text-xs font-bold text-slate-800">{quickViewProduct.rating}</span>
                 <span className="text-slate-500">•</span>
-                <span className="text-xs text-slate-400">{quickViewProduct.reviewCount} customer reviews</span>
+                <span className="text-xs text-slate-500">{quickViewProduct.reviewCount} customer reviews</span>
               </div>
 
               {/* PRICING */}
@@ -119,7 +119,7 @@ export default function QuickViewModal() {
               </div>
 
               {/* SHORT BULLETS */}
-              <ul className="flex flex-col gap-1 text-slate-400 text-xs mt-3 leading-relaxed list-inside list-disc">
+              <ul className="flex flex-col gap-1 text-slate-500 text-xs mt-3 leading-relaxed list-inside list-disc">
                 {quickViewProduct.shortFeatures.slice(0, 3).map((f, i) => (
                   <li key={i}>{f}</li>
                 ))}
@@ -136,12 +136,12 @@ export default function QuickViewModal() {
                         key={color.name}
                         onClick={() => setSelectedColor(color.name)}
                         className={`w-6 h-6 rounded-full cursor-pointer flex items-center justify-center border transition-all ${
-                          isSelected ? 'border-blue-500 scale-110 ring-2 ring-blue-500/20' : 'border-slate-800 hover:border-slate-600'
+                          isSelected ? 'border-blue-500 scale-110 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-400'
                         }`}
                         style={{ backgroundColor: color.hex }}
                         title={color.name}
                       >
-                        {isSelected && <Check size={12} className="text-white mix-blend-difference" />}
+                        {isSelected && <Check size={12} className="text-slate-900 mix-blend-difference" />}
                       </button>
                     );
                   })}
@@ -159,8 +159,8 @@ export default function QuickViewModal() {
                         <button
                           key={opt}
                           onClick={() => setSelectedSize(opt)}
-                          className={`px-3 py-1 bg-slate-800 text-xs font-semibold rounded cursor-pointer border transition-all ${
-                            isSelected ? 'border-cyan-500 text-cyan-400 shadow-[0_0_16px_rgba(34,211,238,0.3)]' : 'border-slate-700 hover:border-slate-600'
+                          className={`px-3 py-1 bg-slate-100 text-xs font-semibold rounded cursor-pointer border transition-all ${
+                            isSelected ? 'border-cyan-500 text-cyan-400 shadow-[0_0_16px_rgba(34,211,238,0.3)]' : 'border-slate-300 hover:border-slate-400'
                           }`}
                         >
                           {opt}
@@ -173,18 +173,18 @@ export default function QuickViewModal() {
             </div>
 
             {/* ACTION FOOTER */}
-            <div className="flex gap-4 border-t border-slate-800 pt-6 mt-6">
+            <div className="flex gap-4 border-t border-slate-200 pt-6 mt-6">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 py-3 bg-blue-600 text-slate-950 hover:bg-blue-500 hover:text-white rounded-lg flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider cursor-pointer font-display scale-100 hover:scale-[1.02] active:scale-97 transition-all duration-200"
+                className="flex-1 py-3 bg-blue-600 text-white hover:bg-blue-500 hover:text-white rounded-lg flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider cursor-pointer font-display scale-100 hover:scale-[1.02] active:scale-97 transition-all duration-200"
               >
                 <ShoppingCart size={16} /> ADD TO CART
               </button>
 
               <button
                 onClick={() => toggleWishlist(quickViewProduct.id)}
-                className={`p-3 border rounded-lg hover:bg-slate-800 transition-colors flex items-center justify-center cursor-pointer ${
-                  isLiked ? 'border-rose-500 text-rose-500 bg-rose-500/5' : 'border-slate-700 text-slate-300'
+                className={`p-3 border rounded-lg hover:bg-slate-100 transition-colors flex items-center justify-center cursor-pointer ${
+                  isLiked ? 'border-rose-500 text-rose-500 bg-rose-500/5' : 'border-slate-300 text-slate-600'
                 }`}
                 title={isLiked ? 'Remove from Wishlist' : 'Add to Wishlist'}
                 aria-label={isLiked ? 'Remove from Wishlist' : 'Add to Wishlist'}
@@ -197,7 +197,7 @@ export default function QuickViewModal() {
                   setQuickViewProduct(null);
                   navigateTo('product', { id: quickViewProduct.id });
                 }}
-                className="p-3 border border-slate-700 hover:border-slate-500 rounded-lg hover:bg-slate-800 text-slate-300 transition-all flex items-center justify-center cursor-pointer gap-1 text-xs font-bold"
+                className="p-3 border border-slate-300 hover:border-slate-500 rounded-lg hover:bg-slate-100 text-slate-600 transition-all flex items-center justify-center cursor-pointer gap-1 text-xs font-bold"
                 title="View Full Detail Page"
               >
                 Full Tech Specs <ArrowUpRight size={14} />

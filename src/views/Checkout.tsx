@@ -150,7 +150,7 @@ export default function Checkout() {
   ];
 
   return (
-    <div id="checkout-view-grid" className="pt-[110px] pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10">
+    <div id="checkout-view-grid" className="pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-10">
       
       {/* CHECKOUT BREADCRUMB */}
       <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
@@ -158,14 +158,14 @@ export default function Checkout() {
         <span className="text-slate-700">/</span>
         <a href="#cart" onClick={() => navigateTo('cart')} className="hover:text-blue-400">Shopping Cart</a>
         <span className="text-slate-700">/</span>
-        <span className="text-slate-300 font-semibold">Checkout Pipeline</span>
+        <span className="text-slate-600 font-semibold">Checkout Pipeline</span>
       </div>
 
       {/* STEPPERS GRAPH HEADER OVERLAY */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-slate-50 border border-slate-200 p-6 rounded-2xl">
         <div className="text-center md:text-left flex flex-col gap-1">
-          <h1 className="text-lg md:text-xl font-bold font-display text-white uppercase tracking-wider">Secure Billing Hub</h1>
-          <p className="text-xs text-slate-400">Secure end-to-end sandbox. Zero physical charges processed.</p>
+          <h1 className="text-lg md:text-xl font-bold font-display text-slate-900 uppercase tracking-wider">Secure Billing Hub</h1>
+          <p className="text-xs text-slate-500">Secure end-to-end sandbox. Zero physical charges processed.</p>
         </div>
 
         {/* PROGRESS STEPPER BAR */}
@@ -175,14 +175,14 @@ export default function Checkout() {
             const isCurrent = activeStep === st.nr;
             return (
               <React.Fragment key={st.nr}>
-                {i > 0 && <div className={`w-6 h-[1.5px] ${isCompleted ? 'bg-blue-500' : 'bg-slate-850'}`} />}
+                {i > 0 && <div className={`w-6 h-[1.5px] ${isCompleted ? 'bg-blue-500' : 'bg-slate-100'}`} />}
                 <div className="flex items-center gap-1.5">
                   <div className={`h-6 w-6 rounded-full flex items-center justify-center font-bold text-[10px] border transition-all ${
                     isCompleted 
                       ? 'bg-blue-600 border-blue-500 text-slate-950' 
                       : isCurrent 
-                        ? 'bg-slate-950 border-cyan-500 text-cyan-400 glow-cyan font-black' 
-                        : 'border-slate-800 text-slate-400'
+                        ? 'bg-white border-cyan-500 text-cyan-400 glow-cyan font-black' 
+                        : 'border-slate-200 text-slate-500'
                   }`}>
                     {st.nr}
                   </div>
@@ -204,35 +204,35 @@ export default function Checkout() {
           
           {/* STEP 1: DEMOGRAPHICS */}
           {activeStep === 1 && (
-            <div className="bg-slate-900/45 border border-slate-800 p-6 sm:p-8 rounded-2xl">
+            <div className="bg-slate-50/45 border border-slate-200 p-6 sm:p-8 rounded-2xl">
               <form onSubmit={handleStep1Submit} className="flex flex-col gap-5">
-                <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
                   <User size={18} className="text-blue-400" />
-                  <h2 className="font-display font-black text-sm uppercase tracking-wider text-white">
+                  <h2 className="font-display font-black text-sm uppercase tracking-wider text-slate-900">
                     Step 1: Contact & Shipping Demographics
                   </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">System Email Address</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">System Email Address</label>
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="e.g. janedoe@gmail.com"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-blue-500"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 placeholder:text-slate-600 focus:outline-none focus:border-blue-500"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Active Mobile Number</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Active Mobile Number</label>
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="e.g. +1 800-555-0199"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 placeholder:text-slate-600 focus:outline-none focus:border-blue-500"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 placeholder:text-slate-600 focus:outline-none focus:border-blue-500"
                       required
                     />
                   </div>
@@ -240,100 +240,100 @@ export default function Checkout() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Given First Name</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Given First Name</label>
                     <input
                       type="text"
                       value={firstName}
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="e.g. Jane"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-blue-500"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Family Last Name</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Family Last Name</label>
                     <input
                       type="text"
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder="e.g. Doe"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-blue-500"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
                       required
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Physical Address Line 1</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Physical Address Line 1</label>
                   <input
                     type="text"
                     value={addressLine1}
                     onChange={(e) => setAddressLine1(e.target.value)}
                     placeholder="e.g. 1600 Amphitheatre Parkway"
-                    className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-blue-500"
+                    className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-blue-500"
                     required
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Address Line 2 (Apartment, room, suite etc.)</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Address Line 2 (Apartment, room, suite etc.)</label>
                   <input
                     type="text"
                     value={addressLine2}
                     onChange={(e) => setAddressLine2(e.target.value)}
                     placeholder="e.g. Suite 402"
-                    className="bg-slate-950 border border-slate-704 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                    className="bg-white border border-slate-704 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="col-span-2 md:col-span-1 flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Town/City</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Town/City</label>
                     <input
                       type="text"
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                       placeholder="Mountain View"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">State / Region</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">State / Region</label>
                     <input
                       type="text"
                       value={state}
                       onChange={(e) => setState(e.target.value)}
                       placeholder="CA"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Zip/Postal Code</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Zip/Postal Code</label>
                     <input
                       type="text"
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
                       placeholder="94043"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none"
                       required
                     />
                   </div>
                   <div className="col-span-2 md:col-span-1 flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Country Domain</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Country Domain</label>
                     <input
                       type="text"
                       value={country}
                       onChange={(e) => setCountry(e.target.value)}
                       placeholder="United States"
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-slate-100 focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-800 focus:outline-none"
                       required
                     />
                   </div>
                 </div>
 
-                <label className="flex items-center gap-2 text-xs text-slate-400 mt-2 select-none cursor-pointer">
+                <label className="flex items-center gap-2 text-xs text-slate-500 mt-2 select-none cursor-pointer">
                   <input
                     type="checkbox"
                     checked={saveToAccount}
@@ -345,7 +345,7 @@ export default function Checkout() {
 
                 <button
                   type="submit"
-                  className="w-full mt-4 py-3.5 bg-blue-600 hover:bg-blue-500 text-slate-950 hover:text-white text-xs font-black uppercase tracking-wider font-display rounded-xl transition-colors duration-250 cursor-pointer flex items-center justify-center gap-1.5"
+                  className="w-full mt-4 py-3.5 bg-blue-600 hover:bg-blue-500 text-white hover:text-white text-xs font-black uppercase tracking-wider font-display rounded-xl transition-colors duration-250 cursor-pointer flex items-center justify-center gap-1.5"
                 >
                   Save & Continue to Delivery Rates <ArrowRight size={14} />
                 </button>
@@ -355,10 +355,10 @@ export default function Checkout() {
 
           {/* STEP 2: SHIPPING SPEED MIGRATION */}
           {activeStep === 2 && (
-            <div className="bg-slate-900/45 border border-slate-800 p-6 sm:p-8 rounded-2xl flex flex-col gap-6">
-              <div className="flex items-center gap-2 border-b border-slate-805 pb-3">
+            <div className="bg-slate-50/45 border border-slate-200 p-6 sm:p-8 rounded-2xl flex flex-col gap-6">
+              <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
                 <Truck size={18} className="text-[#06B6D4]" />
-                <h2 className="font-display font-black text-sm uppercase tracking-wider text-white">
+                <h2 className="font-display font-black text-sm uppercase tracking-wider text-slate-900">
                   Step 2: Choose Transition Speed
                 </h2>
               </div>
@@ -368,7 +368,7 @@ export default function Checkout() {
                 <label className={`p-4 border rounded-xl flex items-center justify-between cursor-pointer transition-all ${
                   shippingMethod === 'standard' 
                     ? 'border-blue-500 bg-blue-500/5 text-white' 
-                    : 'border-slate-800 hover:border-slate-700 text-slate-400'
+                    : 'border-slate-200 hover:border-slate-300 text-slate-500'
                 }`}>
                   <div className="flex items-center gap-4">
                     <input
@@ -379,7 +379,7 @@ export default function Checkout() {
                       className="accent-blue-500 cursor-pointer w-4 h-4"
                     />
                     <div className="text-left flex flex-col gap-0.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-white font-display">Standard Postal ground</p>
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-900 font-display">Standard Postal ground</p>
                       <p className="text-[10px] text-slate-500 font-mono">Expected duration: 5–7 general workdays</p>
                     </div>
                   </div>
@@ -396,7 +396,7 @@ export default function Checkout() {
                 <label className={`p-4 border rounded-xl flex items-center justify-between cursor-pointer transition-all ${
                   shippingMethod === 'express' 
                     ? 'border-blue-500 bg-blue-500/5 text-white' 
-                    : 'border-slate-800 hover:border-slate-700 text-slate-400'
+                    : 'border-slate-200 hover:border-slate-300 text-slate-500'
                 }`}>
                   <div className="flex items-center gap-4">
                     <input
@@ -407,7 +407,7 @@ export default function Checkout() {
                       className="accent-blue-500 cursor-pointer w-4 h-4"
                     />
                     <div className="text-left flex flex-col gap-0.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-white font-display">Express Air transition courier</p>
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-900 font-display">Express Air transition courier</p>
                       <p className="text-[10px] text-slate-500 font-mono">Expected duration: 2–3 active workdays</p>
                     </div>
                   </div>
@@ -418,7 +418,7 @@ export default function Checkout() {
                 <label className={`p-4 border rounded-xl flex items-center justify-between cursor-pointer transition-all ${
                   shippingMethod === 'nextday' 
                     ? 'border-blue-500 bg-blue-500/5 text-white' 
-                    : 'border-slate-800 hover:border-slate-700 text-slate-400'
+                    : 'border-slate-200 hover:border-slate-300 text-slate-500'
                 }`}>
                   <div className="flex items-center gap-4">
                     <input
@@ -429,7 +429,7 @@ export default function Checkout() {
                       className="accent-blue-500 cursor-pointer w-4 h-4"
                     />
                     <div className="text-left flex flex-col gap-0.5">
-                      <p className="text-xs font-bold uppercase tracking-wider text-white font-display">Next Day Air delivery tier</p>
+                      <p className="text-xs font-bold uppercase tracking-wider text-slate-900 font-display">Next Day Air delivery tier</p>
                       <p className="text-[10px] text-slate-500 font-mono">Expected duration: 24h absolute dispatch</p>
                     </div>
                   </div>
@@ -438,16 +438,16 @@ export default function Checkout() {
               </div>
 
               {/* NAV BUTTONS */}
-              <div className="flex gap-4 pt-4 border-t border-slate-850">
+              <div className="flex gap-4 pt-4 border-t border-slate-200">
                 <button
                   onClick={() => setActiveStep(1)}
-                  className="flex-1 py-3 border border-slate-700 text-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer hover:bg-slate-800 duration-200"
+                  className="flex-1 py-3 border border-slate-300 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer hover:bg-slate-100 duration-200"
                 >
                   Back to Coordinates
                 </button>
                 <button
                   onClick={handleStep2Submit}
-                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 text-slate-950 hover:text-white text-xs font-black uppercase tracking-wider rounded-xl transition-colors cursor-pointer"
+                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-500 text-white hover:text-white text-xs font-black uppercase tracking-wider rounded-xl transition-colors cursor-pointer"
                 >
                   Proceed to Settling Payment
                 </button>
@@ -457,35 +457,35 @@ export default function Checkout() {
 
           {/* STEP 3: PAYMENT DETAILS */}
           {activeStep === 3 && (
-            <div className="bg-slate-900/45 border border-slate-800 p-6 sm:p-8 rounded-2xl">
+            <div className="bg-slate-50/45 border border-slate-200 p-6 sm:p-8 rounded-2xl">
               <form onSubmit={handleStep3Submit} className="flex flex-col gap-5">
-                <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
                   <CreditCard size={18} className="text-green-400" />
-                  <h2 className="font-display font-black text-sm uppercase tracking-wider text-white">
+                  <h2 className="font-display font-black text-sm uppercase tracking-wider text-slate-900">
                     Step 3: Secure Credit Settlement
                   </h2>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Card Holder Full Name</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Card Holder Full Name</label>
                   <input
                     type="text"
                     value={cardName}
                     onChange={(e) => setCardName(e.target.value.toUpperCase())}
-                    className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 focus:outline-none"
+                    className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-600 focus:outline-none"
                     required
                   />
                 </div>
 
                 <div className="flex flex-col gap-1.5 relative">
-                  <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Credit Card Number</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Credit Card Number</label>
                   <input
                     type="text"
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
                     placeholder="4111 2222 3333 4444"
                     maxLength={19}
-                    className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white placeholder:text-slate-600 pr-10 focus:outline-none focus:border-blue-500"
+                    className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-900 placeholder:text-slate-600 pr-10 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <CreditCard size={16} className="absolute right-3.5 top-[32px] text-slate-500" />
@@ -493,48 +493,48 @@ export default function Checkout() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">Expiry Metric</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">Expiry Metric</label>
                     <input
                       type="text"
                       value={cardExpiry}
                       onChange={(e) => setCardExpiry(e.target.value)}
                       placeholder="MM/YY"
                       maxLength={5}
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none"
                       required
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">CVV Secure Pin</label>
+                    <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider font-mono">CVV Secure Pin</label>
                     <input
                       type="password"
                       value={cardCvv}
                       onChange={(e) => setCardCvv(e.target.value)}
                       placeholder="e.g. 123"
                       maxLength={3}
-                      className="bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2.5 text-xs text-white focus:outline-none"
+                      className="bg-white border border-slate-300 rounded-lg px-3.5 py-2.5 text-xs text-slate-900 focus:outline-none"
                       required
                     />
                   </div>
                 </div>
 
-                <div className="p-4 border border-slate-805 bg-[#0e1625] rounded-xl flex gap-3 text-[10px] text-slate-400">
+                <div className="p-4 border border-slate-200 bg-[#0e1625] rounded-xl flex gap-3 text-[10px] text-slate-500">
                   <ShieldCheck size={16} className="text-emerald-400 shrink-0" />
                   <span>Your credit logs are fully secured via encrypted token pipelines in compliant environments. Absolutely no financial properties are compromised inside our tech store sandbox.</span>
                 </div>
 
                 {/* NAV ACTIONS */}
-                <div className="flex gap-4 pt-4 border-t border-slate-850">
+                <div className="flex gap-4 pt-4 border-t border-slate-200">
                   <button
                     type="button"
                     onClick={() => setActiveStep(2)}
-                    className="flex-1 py-3 border border-slate-700 text-slate-300 text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer hover:bg-slate-800 duration-200"
+                    className="flex-1 py-3 border border-slate-300 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-xl cursor-pointer hover:bg-slate-100 duration-200"
                   >
                     Rates Selection
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 py-3 bg-[#10B981] hover:bg-emerald-500 text-slate-950 hover:text-white text-xs font-black uppercase tracking-wider rounded-xl transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer glow-blue"
+                    className="flex-1 py-3 bg-[#10B981] hover:bg-emerald-500 text-slate-950 hover:text-slate-700 text-xs font-black uppercase tracking-wider rounded-xl transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer glow-blue"
                   >
                     Place Mock Order 🎉
                   </button>
@@ -547,8 +547,8 @@ export default function Checkout() {
 
         {/* ================= RIGHT SUMMARY PANELS ================= */}
         <aside id="checkout-sidebar-summary" className="w-full lg:w-1/3 flex flex-col gap-6 sticky top-[95px]">
-          <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex flex-col gap-4">
-            <h3 className="font-display font-extrabold text-xs uppercase tracking-wider text-white border-b border-slate-850 pb-2">
+          <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl flex flex-col gap-4">
+            <h3 className="font-display font-extrabold text-xs uppercase tracking-wider text-slate-900 border-b border-slate-200 pb-2">
               Queue Review
             </h3>
 
@@ -557,14 +557,14 @@ export default function Checkout() {
               {cart.map((item, idX) => (
                 <div key={idX} className="flex gap-3 justify-between items-center text-xs">
                   <div className="flex gap-2.5 items-center">
-                    <div className="w-10 h-10 bg-slate-950 border border-slate-800 rounded p-1.5 flex items-center justify-center relative shrink-0">
+                    <div className="w-10 h-10 bg-white border border-slate-200 rounded p-1.5 flex items-center justify-center relative shrink-0">
                       <img src={item.product.image} alt={item.product.name} className="max-h-full object-contain" referrerPolicy="no-referrer" />
                       <span className="absolute -top-1 -right-1 h-4 w-4 bg-blue-600 text-[9px] font-bold text-white rounded-full flex items-center justify-center">
                         {item.quantity}
                       </span>
                     </div>
                     <div className="text-left shrink max-w-[140px] md:max-w-[120px]">
-                      <p className="font-semibold text-white truncate">{item.product.name}</p>
+                      <p className="font-semibold text-slate-900 truncate">{item.product.name}</p>
                       <p className="text-[10px] text-slate-500 truncate">{item.selectedColor || 'Cosmic Slate'}</p>
                     </div>
                   </div>
@@ -575,13 +575,13 @@ export default function Checkout() {
               ))}
             </div>
 
-            <hr className="border-slate-850" />
+            <hr className="border-slate-200" />
 
             {/* METRICS COST SUMS */}
-            <div className="flex flex-col gap-2.5 text-xs text-slate-400 font-mono">
+            <div className="flex flex-col gap-2.5 text-xs text-slate-500 font-mono">
               <div className="flex justify-between">
                 <span>Subtotal Sum</span>
-                <span className="font-bold text-white">${subtotal.toFixed(2)}</span>
+                <span className="font-bold text-slate-900">${subtotal.toFixed(2)}</span>
               </div>
               {couponDiscount > 0 && (
                 <div className="flex justify-between text-green-400 font-bold font-sans">
@@ -597,15 +597,15 @@ export default function Checkout() {
               </div>
               <div className="flex justify-between">
                 <span>State Sales Tax (8%)</span>
-                <span className="font-bold text-white">${taxVal.toFixed(2)}</span>
+                <span className="font-bold text-slate-900">${taxVal.toFixed(2)}</span>
               </div>
             </div>
 
-            <hr className="border-slate-850" />
+            <hr className="border-slate-200" />
 
             {/* GRAND TOTAL */}
             <div className="flex justify-between items-baseline">
-              <span className="text-xs font-bold text-white uppercase tracking-wider font-display">Calculated Invoice</span>
+              <span className="text-xs font-bold text-slate-900 uppercase tracking-wider font-display">Calculated Invoice</span>
               <span className="text-xl font-black text-blue-400 font-display">${finalTotal.toFixed(2)}</span>
             </div>
           </div>

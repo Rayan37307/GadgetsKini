@@ -184,22 +184,22 @@ export default function Shop() {
   const { gridLayout, setGridLayout } = useApp();
 
   return (
-    <div id="shop-view-grid" className="pt-[110px] pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-8">
+    <div id="shop-view-grid" className="pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-8">
       
       {/* SHOP BREADCRUMB */}
       <div className="flex items-center gap-1.5 text-xs text-slate-500 font-mono">
         <a href="#home" onClick={() => navigateTo('home')} className="hover:text-blue-400">Home</a>
         <span className="text-slate-700">/</span>
-        <span className="text-slate-300 font-semibold">Shop Drops</span>
+        <span className="text-slate-600 font-semibold">Shop Drops</span>
       </div>
 
       {/* FILTER TOP HEADER BAR */}
-      <div className="bg-white/[0.02] backdrop-blur-md border border-slate-800 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-slate-50 backdrop-blur-md border border-slate-200 p-5 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="flex flex-col gap-1.5 md:text-left text-center">
-          <h1 className="text-xl md:text-2xl font-bold font-display text-white">
+          <h1 className="text-xl md:text-2xl font-bold font-display text-slate-900">
             {activeCategories.length === 1 ? `Ecosystem: ${activeCategories[0]}` : 'Tech Shop Matrix'}
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Showing <span className="font-bold text-blue-400">{sortedProducts.length}</span> of {MOCK_PRODUCTS.length} authentic models
           </p>
         </div>
@@ -209,13 +209,13 @@ export default function Shop() {
           
           {/* SORT SWITCHER */}
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-slate-400">SORT BY:</span>
+            <span className="text-[10px] font-mono text-slate-500">SORT BY:</span>
             <div className="relative">
               <select
                 id="shop-sort-picker"
                 value={activeSort}
                 onChange={(e) => setActiveSort(e.target.value)}
-                className="bg-slate-800 border border-slate-700 focus:border-blue-500 outline-none text-xs text-white rounded-lg px-3.5 py-2 pr-8 cursor-pointer select-none appearance-none"
+                className="bg-slate-100 border border-slate-300 focus:border-blue-500 outline-none text-xs text-slate-900 rounded-lg px-3.5 py-2 pr-8 cursor-pointer select-none appearance-none"
               >
                 <option value="featured">Featured Deals</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -223,15 +223,15 @@ export default function Shop() {
                 <option value="rating-desc">Best Rated</option>
                 <option value="newest">Newest First</option>
               </select>
-              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
             </div>
           </div>
 
           {/* GRID LAYOUT SPLITTER */}
-          <div className="flex items-center border border-slate-700 rounded-lg overflow-hidden">
+          <div className="flex items-center border border-slate-300 rounded-lg overflow-hidden">
             <button
               onClick={() => setGridLayout(true)}
-              className={`p-2 cursor-pointer transition-colors ${gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-white/[0.03] border border-slate-700 text-slate-400 hover:text-white'}`}
+              className={`p-2 cursor-pointer transition-colors ${gridLayout ? 'bg-blue-600 text-white' : 'bg-slate-50 border border-slate-300 text-slate-500 hover:text-slate-700'}`}
               title="Grid View"
               aria-label="Toggle grid layout display"
             >
@@ -239,7 +239,7 @@ export default function Shop() {
             </button>
             <button
               onClick={() => setGridLayout(false)}
-              className={`p-2 cursor-pointer transition-colors ${!gridLayout ? 'bg-blue-600 text-slate-900' : 'bg-white/[0.03] border border-slate-700 text-slate-400 hover:text-white'}`}
+              className={`p-2 cursor-pointer transition-colors ${!gridLayout ? 'bg-blue-600 text-white' : 'bg-slate-50 border border-slate-300 text-slate-500 hover:text-slate-700'}`}
               title="List View"
               aria-label="Toggle list layout display"
             >
@@ -250,7 +250,7 @@ export default function Shop() {
           {/* MOBILE TOGGLE BUTTON */}
           <button
             onClick={() => setMobileFiltersOpen(true)}
-            className="md:hidden flex items-center gap-1.5 px-4 py-2 bg-slate-800 border border-slate-700 hover:border-slate-500 rounded-lg text-xs font-bold text-slate-200"
+            className="md:hidden flex items-center gap-1.5 px-4 py-2 bg-slate-100 border border-slate-300 hover:border-slate-500 rounded-lg text-xs font-bold text-slate-700"
           >
             <SlidersHorizontal size={14} /> Filters
           </button>
@@ -260,9 +260,9 @@ export default function Shop() {
       <div className="flex flex-col md:flex-row gap-8 items-start">
         
         {/* ================= SIDEBAR FILTERS (DESKTOP) ================= */}
-        <aside id="shop-sidebar-filters" className="hidden md:flex flex-col gap-6 w-64 shrink-0 bg-white/[0.02] backdrop-blur-sm border border-slate-800 p-6 rounded-2xl sticky top-[95px]">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="text-sm font-bold font-display uppercase tracking-wider text-white">Refine Criteria</h3>
+        <aside id="shop-sidebar-filters" className="hidden md:flex flex-col gap-6 w-64 shrink-0 bg-slate-50 backdrop-blur-sm border border-slate-200 p-6 rounded-2xl sticky top-[95px]">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+            <h3 className="text-sm font-bold font-display uppercase tracking-wider text-slate-900">Refine Criteria</h3>
             <button
               onClick={clearAllFilters}
               className="text-[10px] font-mono font-bold text-red-400 hover:underline"
@@ -273,17 +273,17 @@ export default function Shop() {
 
           {/* CHECKBOX: CATEGORY */}
           <div className="flex flex-col gap-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 font-mono">Category Layer</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">Category Layer</h4>
             <div className="flex flex-col gap-2">
               {categories.map((cat) => {
                 const checked = activeCategories.includes(cat);
                 return (
-                  <label key={cat} className="flex items-center gap-2 text-xs text-slate-300 hover:text-white cursor-pointer">
+                  <label key={cat} className="flex items-center gap-2 text-xs text-slate-600 hover:text-slate-700 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={checked}
                       onChange={() => handleCategoryToggle(cat)}
-                      className="accent-blue-500 cursor-pointer h-3.5 w-3.5 rounded border-slate-700 bg-slate-900"
+                      className="accent-blue-500 cursor-pointer h-3.5 w-3.5 rounded border-slate-300 bg-slate-50"
                     />
                     <span>{cat}</span>
                   </label>
@@ -293,19 +293,19 @@ export default function Shop() {
           </div>
 
           {/* CHECKBOX: BRAND */}
-          <hr className="border-slate-800" />
+          <hr className="border-slate-200" />
           <div className="flex flex-col gap-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 font-mono">Brands Ecosystem</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">Brands Ecosystem</h4>
             <div className="flex flex-col gap-2">
               {brands.map((brand) => {
                 const checked = activeBrands.includes(brand);
                 return (
-                  <label key={brand} className="flex items-center gap-2 text-xs text-slate-300 hover:text-white cursor-pointer">
+                  <label key={brand} className="flex items-center gap-2 text-xs text-slate-600 hover:text-slate-700 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={checked}
                       onChange={() => handleBrandToggle(brand)}
-                      className="accent-blue-500 cursor-pointer h-3.5 w-3.5 rounded border-slate-700 bg-slate-900"
+                      className="accent-blue-500 cursor-pointer h-3.5 w-3.5 rounded border-slate-300 bg-slate-50"
                     />
                     <span>{brand}</span>
                   </label>
@@ -315,10 +315,10 @@ export default function Shop() {
           </div>
 
           {/* SLIDER: PRICE */}
-          <hr className="border-slate-800" />
+          <hr className="border-slate-200" />
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 font-mono">Budget limit</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">Budget limit</h4>
               <span className="text-xs font-bold font-mono text-cyan-400">${priceMax}</span>
             </div>
             <input
@@ -328,7 +328,7 @@ export default function Shop() {
               step="50"
               value={priceMax}
               onChange={(e) => setPriceMax(Number(e.target.value))}
-              className="accent-cyan-500 cursor-pointer w-full bg-slate-900 h-1.5 rounded-lg border-transparent"
+              className="accent-cyan-500 cursor-pointer w-full bg-slate-50 h-1.5 rounded-lg border-transparent"
             />
             <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono">
               <span>$0</span>
@@ -337,11 +337,11 @@ export default function Shop() {
           </div>
 
           {/* TOGGLES: EXTRA FILTERS */}
-          <hr className="border-slate-800" />
+          <hr className="border-slate-200" />
           <div className="flex flex-col gap-3">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 font-mono">Operations</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-slate-500 font-mono">Operations</h4>
             <div className="flex flex-col gap-2.5">
-              <label className="flex items-center justify-between text-xs text-slate-300 hover:text-white cursor-pointer">
+              <label className="flex items-center justify-between text-xs text-slate-600 hover:text-slate-700 cursor-pointer">
                 <span>4★ & Above rating</span>
                 <input
                   type="checkbox"
@@ -351,7 +351,7 @@ export default function Shop() {
                 />
               </label>
 
-              <label className="flex items-center justify-between text-xs text-slate-300 hover:text-white cursor-pointer">
+              <label className="flex items-center justify-between text-xs text-slate-600 hover:text-slate-700 cursor-pointer">
                 <span>In Stock only</span>
                 <input
                   type="checkbox"
@@ -368,15 +368,15 @@ export default function Shop() {
         <div id="product-listing-content" className="flex-1 w-full flex flex-col gap-8">
           
           {sortedProducts.length === 0 ? (
-            <div className="bg-slate-900/40 border border-slate-800 rounded-2xl p-16 text-center max-w-xl mx-auto flex flex-col items-center gap-4">
+            <div className="bg-white/40 border border-slate-200 rounded-2xl p-16 text-center max-w-xl mx-auto flex flex-col items-center gap-4">
               <SlidersHorizontal className="text-slate-600 animate-pulse" size={44} />
-              <h3 className="text-lg font-bold font-display text-white">No Matched Hardware</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-lg font-bold font-display text-slate-900">No Matched Hardware</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">
                 No gadgets matched your active criteria filters. Try loosening your price threshold limits, turning off checkboxes, or looking up distinct terms.
               </p>
               <button
                 onClick={clearAllFilters}
-                className="px-5 py-2.5 bg-blue-600 text-slate-950 hover:bg-blue-500 hover:text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all font-display duration-200 cursor-pointer"
+                className="px-5 py-2.5 bg-blue-600 text-white hover:bg-blue-500 hover:text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all font-display duration-200 cursor-pointer"
               >
                 Clear Filters
               </button>
@@ -403,11 +403,11 @@ export default function Shop() {
 
               {/* PAGINATION PROGRESS BAR & LOAD MORE BUTTON */}
               {hasMore && (
-                <div className="flex flex-col items-center gap-3 pt-6 border-t border-slate-850">
+                <div className="flex flex-col items-center gap-3 pt-6 border-t border-slate-200">
                   <p className="text-[10px] text-slate-500 font-mono text-center">
                     COMPILING ITEMS PROPORTION: {visibleProducts.length} of {sortedProducts.length} WIDGETS
                   </p>
-                  <div className="w-48 h-1 bg-slate-850 rounded-full overflow-hidden">
+                  <div className="w-48 h-1 bg-slate-100 rounded-full overflow-hidden">
                     <div 
                       className="h-full bg-blue-500 rounded-full" 
                       style={{ width: `${(visibleProducts.length / sortedProducts.length) * 100}%` }}
@@ -415,7 +415,7 @@ export default function Shop() {
                   </div>
                   <button
                     onClick={() => setVisibleCount(prev => prev + 4)}
-                    className="mt-2 px-6 py-2.5 border border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-xs text-white font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer"
+                    className="mt-2 px-6 py-2.5 border border-slate-300 hover:border-slate-500 hover:bg-slate-100 text-xs text-slate-900 font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer"
                   >
                     Load More Gadgets
                   </button>
@@ -430,29 +430,29 @@ export default function Shop() {
       {/* ================= MOBILE EXPANDED FILTER SHEET ================= */}
       <AnimatePresence>
         {mobileFiltersOpen && (
-          <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[99]" onClick={() => setMobileFiltersOpen(false)}>
+          <div className="fixed inset-0 bg-white/80 backdrop-blur-sm z-[99]" onClick={() => setMobileFiltersOpen(false)}>
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 h-full w-full max-w-xs bg-slate-900 border-l border-slate-800 p-6 shadow-2xl flex flex-col justify-between overflow-y-auto"
+              className="absolute right-0 top-0 h-full w-full max-w-xs bg-slate-50 border-l border-slate-200 p-6 shadow-2xl flex flex-col justify-between overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col gap-6">
-                <div className="flex items-center justify-between border-b border-slate-805 pb-3">
-                  <h3 className="font-display font-extrabold text-sm text-white uppercase tracking-wider">Refine Filter</h3>
-                  <button onClick={() => setMobileFiltersOpen(false)} className="text-slate-400 hover:text-white cursor-pointer">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+                  <h3 className="font-display font-extrabold text-sm text-slate-900 uppercase tracking-wider">Refine Filter</h3>
+                  <button onClick={() => setMobileFiltersOpen(false)} className="text-slate-500 hover:text-slate-700 cursor-pointer">
                     <X size={18} />
                   </button>
                 </div>
 
                 {/* CATEGORIES CHECKBOXES (MOBILE) */}
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-xs font-bold font-mono text-slate-400">Category Layer</h4>
+                  <h4 className="text-xs font-bold font-mono text-slate-500">Category Layer</h4>
                   <div className="flex flex-col gap-2">
                     {categories.map((cat) => (
-                      <label key={cat} className="flex items-center gap-2 text-xs text-slate-300">
+                      <label key={cat} className="flex items-center gap-2 text-xs text-slate-600">
                         <input
                           type="checkbox"
                           checked={activeCategories.includes(cat)}
@@ -466,12 +466,12 @@ export default function Shop() {
                 </div>
 
                 {/* BRAND SELECTS (MOBILE) */}
-                <hr className="border-slate-805" />
+                <hr className="border-slate-200" />
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-xs font-bold font-mono text-slate-400">Brands Ecosystem</h4>
+                  <h4 className="text-xs font-bold font-mono text-slate-500">Brands Ecosystem</h4>
                   <div className="flex flex-col gap-2">
                     {brands.map((brand) => (
-                      <label key={brand} className="flex items-center gap-2 text-xs text-slate-300">
+                      <label key={brand} className="flex items-center gap-2 text-xs text-slate-600">
                         <input
                           type="checkbox"
                           checked={activeBrands.includes(brand)}
@@ -485,9 +485,9 @@ export default function Shop() {
                 </div>
 
                 {/* BUDGET SELECTS (MOBILE) */}
-                <hr className="border-slate-855" />
+                <hr className="border-slate-200" />
                 <div className="flex flex-col gap-3">
-                  <div className="flex justify-between text-xs font-mono text-slate-400">
+                  <div className="flex justify-between text-xs font-mono text-slate-500">
                     <span>Budget limit</span>
                     <span className="text-cyan-400 font-bold">${priceMax}</span>
                   </div>
@@ -503,16 +503,16 @@ export default function Shop() {
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-800/80 flex gap-3">
+              <div className="pt-6 border-t border-slate-200/80 flex gap-3">
                 <button
                   onClick={clearAllFilters}
-                  className="flex-1 py-3 border border-slate-800 hover:border-slate-650 text-xs font-bold text-slate-400 uppercase tracking-widest rounded-lg cursor-pointer"
+                  className="flex-1 py-3 border border-slate-200 hover:border-slate-650 text-xs font-bold text-slate-500 uppercase tracking-widest rounded-lg cursor-pointer"
                 >
                   Reset
                 </button>
                 <button
                   onClick={() => setMobileFiltersOpen(false)}
-                  className="flex-1 py-3 bg-blue-600 text-slate-950 hover:text-white text-xs font-black uppercase tracking-widest rounded-lg cursor-pointer"
+                  className="flex-1 py-3 bg-blue-600 text-white hover:text-white text-xs font-black uppercase tracking-widest rounded-lg cursor-pointer"
                 >
                   Apply
                 </button>

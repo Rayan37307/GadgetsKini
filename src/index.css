@@ -6,10 +6,10 @@
   --font-display: "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  --color-navy-900: #0F172A;
-  --color-navy-800: #1E293B;
-  --color-navy-700: #334155;
-  --color-navy-600: #475569;
+  --color-navy-900: #F8FAFC;
+  --color-navy-800: #F1F5F9;
+  --color-navy-700: #E2E8F0;
+  --color-navy-600: #CBD5E1;
   
   --color-accent-blue: #3B82F6;
   --color-accent-cyan: #06B6D4;
@@ -20,8 +20,12 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-navy-900);
-  color: #F8FAFC;
+  background-color: #F8FAFC;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: #0F172A;
   overflow-x: hidden;
 }
 
@@ -35,10 +39,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #CBD5E1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {

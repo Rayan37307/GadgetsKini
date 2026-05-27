@@ -110,7 +110,7 @@ export default function ProductDetail() {
   }, [product]);
 
   return (
-    <div id="detail-page-container" className="pt-[110px] pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-16">
+    <div id="detail-page-container" className="pb-24 max-w-7xl mx-auto px-4 md:px-8 w-full flex flex-col gap-16">
       
       {/* BREADCRUMB + BACK NAVIGATION LINKS */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -119,12 +119,12 @@ export default function ProductDetail() {
           <span className="text-slate-700">/</span>
           <a href="#shop" onClick={() => navigateTo('shop')} className="hover:text-blue-400">Shop Catalog</a>
           <span className="text-slate-700">/</span>
-          <span className="text-slate-300 font-semibold truncate max-w-[200px] sm:max-w-xs">{product.name}</span>
+          <span className="text-slate-600 font-semibold truncate max-w-[200px] sm:max-w-xs">{product.name}</span>
         </div>
 
         <button
           onClick={() => navigateTo('shop')}
-          className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-slate-400 hover:text-white transition-colors self-start cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-mono font-bold text-slate-500 hover:text-slate-700 transition-colors self-start cursor-pointer"
         >
           <ArrowLeft size={14} /> Back to Catalog
         </button>
@@ -138,7 +138,7 @@ export default function ProductDetail() {
           
           {/* Main Visual box with hover magnifier */}
           <div 
-            className="bg-slate-950 rounded-2xl p-8 aspect-square flex items-center justify-center border border-slate-800 relative overflow-hidden group/zoom cursor-crosshair h-[350px] sm:h-[450px]"
+            className="bg-white rounded-2xl p-8 aspect-square flex items-center justify-center border border-slate-200 relative overflow-hidden group/zoom cursor-crosshair h-[350px] sm:h-[450px]"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
@@ -173,8 +173,8 @@ export default function ProductDetail() {
                     <button
                       key={idx}
                       onClick={() => setActiveImage(imgUrl)}
-                      className={`aspect-square p-2 bg-slate-950 rounded-xl cursor-pointer border flex items-center justify-center transition-all ${
-                        isSelected ? 'border-blue-500 bg-slate-900/60 ring-2 ring-blue-500/20' : 'border-slate-800 hover:border-slate-700'
+                      className={`aspect-square p-2 bg-white rounded-xl cursor-pointer border flex items-center justify-center transition-all ${
+                        isSelected ? 'border-blue-500 bg-white/60 ring-2 ring-blue-500/20' : 'border-slate-200 hover:border-slate-300'
                       }`}
                     >
                       <img
@@ -193,7 +193,7 @@ export default function ProductDetail() {
 
         {/* RIGHT TECHNICAL PANEL */}
         <div className="w-full lg:w-1/2 flex flex-col gap-6">
-          <div className="border-b border-slate-850 pb-6 flex flex-col gap-3">
+          <div className="border-b border-slate-200 pb-6 flex flex-col gap-3">
             
             {/* Category / SKU indicators */}
             <div className="flex items-center justify-between">
@@ -204,11 +204,11 @@ export default function ProductDetail() {
                 {product.brand}
               </span>
               <span className="text-[10px] font-mono text-slate-500">
-                SKU: <span className="text-slate-300">{product.sku}</span>
+                SKU: <span className="text-slate-600">{product.sku}</span>
               </span>
             </div>
 
-            <h1 className="text-2xl md:text-4xl font-extrabold font-display text-white tracking-tight">
+            <h1 className="text-2xl md:text-4xl font-extrabold font-display text-slate-900 tracking-tight">
               {product.name}
             </h1>
 
@@ -217,7 +217,7 @@ export default function ProductDetail() {
               <div className="flex items-center text-amber-500">
                 <Star fill="currentColor" size={14} />
               </div>
-              <span className="text-sm font-bold text-slate-200">{product.rating}</span>
+              <span className="text-sm font-bold text-slate-700">{product.rating}</span>
               <span className="text-slate-600">•</span>
               <button
                 onClick={() => {
@@ -247,14 +247,14 @@ export default function ProductDetail() {
 
           {/* Bulleted short description (5 features) */}
           {product.shortFeatures.length > 0 && (
-            <ul className="flex flex-col gap-1.5 text-xs text-slate-400 leading-relaxed list-inside list-disc">
+            <ul className="flex flex-col gap-1.5 text-xs text-slate-500 leading-relaxed list-inside list-disc">
               {product.shortFeatures.map((feat, i) => (
                 <li key={i}>{feat}</li>
               ))}
             </ul>
           )}
 
-          <hr className="border-slate-850" />
+          <hr className="border-slate-200" />
 
           {/* SWATCHES & VARIANTS SELECTORS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -272,12 +272,12 @@ export default function ProductDetail() {
                       key={col.name}
                       onClick={() => setSelectedColor(col.name)}
                       className={`w-7 h-7 rounded-full cursor-pointer border flex items-center justify-center transition-all ${
-                        isSelected ? 'border-cyan-500 scale-110 ring-2 ring-cyan-500/25' : 'border-slate-800 hover:border-slate-600'
+                        isSelected ? 'border-cyan-500 scale-110 ring-2 ring-cyan-500/25' : 'border-slate-200 hover:border-slate-400'
                       }`}
                       style={{ backgroundColor: col.hex }}
                       title={col.name}
                     >
-                      {isSelected && <Check size={14} className="text-white mix-blend-difference" />}
+                      {isSelected && <Check size={14} className="text-slate-900 mix-blend-difference" />}
                     </button>
                   );
                 })}
@@ -297,8 +297,8 @@ export default function ProductDetail() {
                       <button
                         key={cap}
                         onClick={() => setSelectedStorage(cap)}
-                        className={`px-3 py-1.5 bg-slate-800 border rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
-                          isSelected ? 'border-cyan-500 text-cyan-400' : 'border-slate-700 text-slate-400 hover:text-white'
+                        className={`px-3 py-1.5 bg-slate-100 border rounded-lg text-xs font-semibold cursor-pointer transition-colors ${
+                          isSelected ? 'border-cyan-500 text-cyan-400' : 'border-slate-300 text-slate-500 hover:text-slate-700'
                         }`}
                       >
                         {cap}
@@ -310,25 +310,25 @@ export default function ProductDetail() {
             )}
           </div>
 
-          <hr className="border-slate-850" />
+          <hr className="border-slate-200" />
 
           {/* QUANTITY AND CART CTAs */}
           <div className="flex flex-col sm:flex-row items-center gap-4">
             
             {/* Stepper column */}
-            <div className="flex items-center border border-slate-700 bg-slate-950 rounded-xl overflow-hidden self-stretch sm:self-auto">
+            <div className="flex items-center border border-slate-300 bg-white rounded-xl overflow-hidden self-stretch sm:self-auto">
               <button
                 onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
-                className="px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/40 text-lg font-bold cursor-pointer transition-colors"
+                className="px-4 py-3 text-slate-500 hover:text-slate-700 hover:bg-slate-100/40 text-lg font-bold cursor-pointer transition-colors"
               >
                 -
               </button>
-              <span className="px-6 text-sm font-extrabold text-white select-none">
+              <span className="px-6 text-sm font-extrabold text-slate-900 select-none">
                 {quantity}
               </span>
               <button
                 onClick={() => setQuantity(prev => prev + 1)}
-                className="px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-800/40 text-lg font-bold cursor-pointer transition-colors"
+                className="px-4 py-3 text-slate-500 hover:text-slate-700 hover:bg-slate-100/40 text-lg font-bold cursor-pointer transition-colors"
               >
                 +
               </button>
@@ -355,7 +355,7 @@ export default function ProductDetail() {
           </div>
 
           {/* WISHLIST + SPEC COMPARE TOGGLE LINKS */}
-          <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
+          <div className="flex items-center justify-between text-xs text-slate-500 pt-1">
             <button
               onClick={() => toggleWishlist(product.id)}
               className={`flex items-center gap-1.5 cursor-pointer hover:text-rose-400 transition-colors ${isLiked ? 'text-rose-400 font-bold' : ''}`}
@@ -373,7 +373,7 @@ export default function ProductDetail() {
             </button>
           </div>
 
-          <hr className="border-slate-850" />
+          <hr className="border-slate-200" />
 
           {/* INSTOCK STATUS + DELIVERY FORECAST */}
           <div className="flex flex-col gap-2.5">
@@ -384,18 +384,18 @@ export default function ProductDetail() {
               </span>
             </div>
 
-            <div className="flex items-center gap-2 text-slate-400 text-xs">
+            <div className="flex items-center gap-2 text-slate-500 text-xs">
               <Truck size={14} className="text-slate-500" />
               <span>Transit Delivery Expected:</span>
-              <span className="text-slate-200 font-bold font-mono text-xs">{deliveryString}</span>
+              <span className="text-slate-700 font-bold font-mono text-xs">{deliveryString}</span>
             </div>
           </div>
 
           {/* SECURE CHECKOUT SHIELD ICON */}
-          <div className="border border-slate-800 bg-slate-900/40 p-4 rounded-xl flex items-center gap-3">
+          <div className="border border-slate-200 bg-white/40 p-4 rounded-xl flex items-center gap-3">
             <ShieldCheck size={20} className="text-emerald-400 shrink-0" />
-            <div className="text-[10px] text-slate-400 leading-relaxed shrink">
-              <p className="font-bold text-white uppercase tracking-wider mb-0.5">2-Year Comprehensive Mechanical Warranty</p>
+            <div className="text-[10px] text-slate-500 leading-relaxed shrink">
+              <p className="font-bold text-slate-900 uppercase tracking-wider mb-0.5">2-Year Comprehensive Mechanical Warranty</p>
               <span>Authentic drops checked and secured via verified multi-node gateways. Secure billing.</span>
             </div>
           </div>
@@ -405,7 +405,7 @@ export default function ProductDetail() {
 
       {/* TABS OVERLAY SCREEN BELOW DETAILED */}
       <section id="specs-tabs" className="scroll-mt-24">
-        <div className="border-b border-slate-800 flex gap-4 overflow-x-auto">
+        <div className="border-b border-slate-200 flex gap-4 overflow-x-auto">
           {/* TABS CONTROLLERS */}
           {[
             { tag: 'desc', label: 'Detailed Description' },
@@ -419,7 +419,7 @@ export default function ProductDetail() {
                 key={tabSpec.tag}
                 onClick={() => setActiveTab(tabSpec.tag as any)}
                 className={`py-3.5 px-1 text-xs font-bold uppercase tracking-widest relative cursor-pointer focus:outline-none transition-colors whitespace-nowrap ${
-                  isSel ? 'text-[#06B6D4]' : 'text-slate-400 hover:text-white'
+                  isSel ? 'text-[#06B6D4]' : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {tabSpec.label}
@@ -434,7 +434,7 @@ export default function ProductDetail() {
         {/* TABS VALUE BLOCK CONTAINER */}
         <div className="py-8 min-h-[200px]">
           {activeTab === 'desc' && (
-            <div className="flex flex-col gap-4 text-sm text-slate-400 leading-relaxed max-w-4xl">
+            <div className="flex flex-col gap-4 text-sm text-slate-500 leading-relaxed max-w-4xl">
               {product.description.map((pText, i) => (
                 <p key={i}>{pText}</p>
               ))}
@@ -443,15 +443,15 @@ export default function ProductDetail() {
 
           {activeTab === 'specs' && (
             product.specifications.length > 0 ? (
-              <div className="border border-slate-800 rounded-xl overflow-hidden max-w-2xl bg-slate-950/40">
+              <div className="border border-slate-200 rounded-xl overflow-hidden max-w-2xl bg-white/40">
                 <table className="w-full text-left text-xs border-collapse">
                   <tbody>
                     {product.specifications.map((spec, i) => (
-                      <tr key={i} className="border-b border-slate-850/80 last:border-0 hover:bg-slate-900/30">
-                        <td className="p-3.5 font-bold text-slate-400 border-r border-slate-850/80 w-1/3 uppercase tracking-wider text-[10px] font-mono">
+                      <tr key={i} className="border-b border-slate-200/80 last:border-0 hover:bg-white/30">
+                        <td className="p-3.5 font-bold text-slate-500 border-r border-slate-200/80 w-1/3 uppercase tracking-wider text-[10px] font-mono">
                           {spec.key}
                         </td>
-                        <td className="p-3.5 text-slate-200">
+                        <td className="p-3.5 text-slate-700">
                           {spec.value}
                         </td>
                       </tr>
@@ -479,9 +479,9 @@ export default function ProductDetail() {
           {activeTab === 'reviews' && (
             <div className="flex flex-col gap-6 max-w-3xl">
               {MOCK_REVIEWS.map((rev) => (
-                <div key={rev.id} className="p-5 border border-slate-800 bg-slate-900/20 rounded-xl flex flex-col gap-2 relative">
-                  <div className="flex items-center justify-between border-b border-slate-850/50 pb-2">
-                    <span className="text-sm font-semibold text-white">{rev.name}</span>
+                <div key={rev.id} className="p-5 border border-slate-200 bg-white/20 rounded-xl flex flex-col gap-2 relative">
+                  <div className="flex items-center justify-between border-b border-slate-200/50 pb-2">
+                    <span className="text-sm font-semibold text-slate-900">{rev.name}</span>
                     <span className="text-[10px] text-slate-500 font-mono">{rev.date}</span>
                   </div>
                   
@@ -497,7 +497,7 @@ export default function ProductDetail() {
                     ))}
                   </div>
 
-                  <p className="text-xs text-slate-400 leading-relaxed pt-1">{rev.comment}</p>
+                  <p className="text-xs text-slate-500 leading-relaxed pt-1">{rev.comment}</p>
                 </div>
               ))}
             </div>
@@ -507,7 +507,7 @@ export default function ProductDetail() {
 
       {/* CUSTOMERS ALSO BOUGHT - REAL DYNAMIC REC LIST */}
       <section id="recommended-accessories-scene" className="flex flex-col gap-8">
-        <h2 className="text-xl md:text-2xl font-bold font-display text-white uppercase tracking-wider border-b border-slate-800 pb-4">
+        <h2 className="text-xl md:text-2xl font-bold font-display text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-4">
           Customers Also Bought
         </h2>
 
@@ -517,17 +517,17 @@ export default function ProductDetail() {
             return (
               <div
                 key={rec.id}
-                className="p-4 bg-white/[0.02] backdrop-blur-sm border border-slate-800 hover:border-blue-500/30 rounded-xl flex flex-col justify-between group transition-all"
+                className="p-4 bg-slate-50 backdrop-blur-sm border border-slate-200 hover:border-blue-500/30 rounded-xl flex flex-col justify-between group transition-all"
               >
                 <div 
-                  className="bg-slate-950 p-6 rounded-lg flex items-center justify-center cursor-pointer mb-3 aspect-square relative"
+                  className="bg-white p-6 rounded-lg flex items-center justify-center cursor-pointer mb-3 aspect-square relative"
                   onClick={() => navigateTo('product', { id: rec.id })}
                 >
                   <img src={rec.image} alt={rec.name} className="max-h-24 object-contain group-hover:scale-105 transition-transform" referrerPolicy="no-referrer" />
-                  <div className="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                     <button 
                       onClick={(e) => { e.stopPropagation(); setQuickViewProduct(rec); }}
-                      className="px-2.5 py-1 bg-slate-900 border border-slate-700 text-[10px] font-bold text-white rounded cursor-pointer"
+                      className="px-2.5 py-1 bg-slate-50 border border-slate-300 text-[10px] font-bold text-slate-900 rounded cursor-pointer"
                     >
                       Spec View
                     </button>
@@ -538,7 +538,7 @@ export default function ProductDetail() {
                   <span className="text-[8px] font-mono tracking-widest text-[#06B6D4] uppercase">{rec.brand}</span>
                   <h3 
                     onClick={() => navigateTo('product', { id: rec.id })}
-                    className="font-display font-semibold text-xs text-slate-200 hover:text-blue-400 cursor-pointer line-clamp-1 transition-colors"
+                    className="font-display font-semibold text-xs text-slate-700 hover:text-blue-400 cursor-pointer line-clamp-1 transition-colors"
                   >
                     {rec.name}
                   </h3>
@@ -546,7 +546,7 @@ export default function ProductDetail() {
                   <div className="flex justify-between items-center mt-1">
                     <div className="flex items-center gap-1 text-[10px] text-amber-500">
                       <Star fill="currentColor" size={10} />
-                      <span className="text-slate-300 font-bold">{rec.rating}</span>
+                      <span className="text-slate-600 font-bold">{rec.rating}</span>
                     </div>
 
                     <p className="text-xs font-black text-blue-400">${rec.price}</p>

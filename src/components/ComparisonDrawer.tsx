@@ -20,7 +20,7 @@ export default function ComparisonDrawer() {
   );
 
   return (
-    <div id="comparison-dock" className="fixed bottom-0 left-0 w-full z-40 bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 shadow-3xl text-slate-200">
+    <div id="comparison-dock" className="fixed bottom-0 left-0 w-full z-40 bg-white/90 backdrop-blur-xl border-t border-slate-200 shadow-3xl text-slate-700">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* COMPARED HEADINGS */}
@@ -29,10 +29,10 @@ export default function ComparisonDrawer() {
             <SlidersHorizontal size={18} />
           </div>
           <div>
-            <h4 id="comparison-drawer-title" className="text-xs md:text-sm font-semibold text-white tracking-wider font-display uppercase">
+            <h4 id="comparison-drawer-title" className="text-xs md:text-sm font-semibold text-slate-900 tracking-wider font-display uppercase">
               Specs Comparison Board
             </h4>
-            <p className="text-[10px] text-slate-400">
+            <p className="text-[10px] text-slate-500">
               Comparing {comparisonList.length}/3 selected gadgets side-by-side.
             </p>
           </div>
@@ -43,7 +43,7 @@ export default function ComparisonDrawer() {
           {comparisonList.map((product) => (
             <div 
               key={product.id}
-              className="px-2.5 py-1.5 bg-slate-800 rounded-lg border border-slate-700 flex items-center gap-2 relative group"
+              className="px-2.5 py-1.5 bg-slate-100 rounded-lg border border-slate-300 flex items-center gap-2 relative group"
             >
               <img 
                 src={product.image} 
@@ -52,12 +52,12 @@ export default function ComparisonDrawer() {
                 referrerPolicy="no-referrer"
               />
               <div className="text-[10px] max-w-[100px]">
-                <p className="font-semibold text-white truncate">{product.name}</p>
+                <p className="font-semibold text-slate-900 truncate">{product.name}</p>
                 <p className="text-blue-400 font-bold">${product.price}</p>
               </div>
               <button
                 onClick={() => removeFromComparison(product.id)}
-                className="p-1 text-slate-500 hover:text-red-400 hover:bg-slate-700/50 rounded cursor-pointer"
+                className="p-1 text-slate-500 hover:text-red-400 hover:bg-slate-200/50 rounded cursor-pointer"
                 aria-label={`Remove ${product.name} from comparison`}
               >
                 <X size={12} />
@@ -66,7 +66,7 @@ export default function ComparisonDrawer() {
           ))}
 
           {comparisonList.length < 3 && (
-            <div className="px-3 py-1.5 border border-dashed border-slate-700 rounded-lg text-[10px] text-slate-500 flex items-center justify-center min-w-[140px]">
+            <div className="px-3 py-1.5 border border-dashed border-slate-300 rounded-lg text-[10px] text-slate-500 flex items-center justify-center min-w-[140px]">
               + Add up to {3 - comparisonList.length} more
             </div>
           )}
@@ -83,7 +83,7 @@ export default function ComparisonDrawer() {
           
           <button
             onClick={clearComparison}
-            className="p-2 border border-slate-800 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg cursor-pointer"
+            className="p-2 border border-slate-200 text-slate-500 hover:text-red-400 hover:bg-slate-100 rounded-lg cursor-pointer"
             title="Clean All Comparison List"
             aria-label="Clean all items from comparison board"
           >
@@ -99,15 +99,15 @@ export default function ComparisonDrawer() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="border-t border-slate-800 bg-slate-950 overflow-x-auto"
+            className="border-t border-slate-200 bg-white overflow-x-auto"
           >
             <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
               <table className="w-full text-left text-xs min-w-[600px] border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-850">
-                    <th className="py-4 font-bold text-slate-400 font-mono w-1/4">Specs Attribute</th>
+                  <tr className="border-b border-slate-200">
+                    <th className="py-4 font-bold text-slate-500 font-mono w-1/4">Specs Attribute</th>
                     {comparisonList.map(p => (
-                      <th key={p.id} className="py-4 px-4 font-display font-black text-sm text-white w-1/4">
+                      <th key={p.id} className="py-4 px-4 font-display font-black text-sm text-slate-900 w-1/4">
                         {p.name}
                       </th>
                     ))}
@@ -118,7 +118,7 @@ export default function ComparisonDrawer() {
                   <tr>
                     <td className="py-3.5 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Manufacturer</td>
                     {comparisonList.map(p => (
-                      <td key={p.id} className="py-3.5 px-4 font-mono font-bold text-slate-300">
+                      <td key={p.id} className="py-3.5 px-4 font-mono font-bold text-slate-600">
                         {p.brand}
                       </td>
                     ))}
@@ -162,7 +162,7 @@ export default function ComparisonDrawer() {
                     <td className="py-3.5 text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Averages Score</td>
                     {comparisonList.map(p => (
                       <td key={p.id} className="py-3.5 px-4">
-                        <div className="flex items-center gap-1.5 text-slate-300">
+                        <div className="flex items-center gap-1.5 text-slate-600">
                           <Star fill="currentColor" size={12} className="text-amber-500" />
                           <span className="font-bold">{p.rating}</span>
                           <span className="text-slate-600">({p.reviewCount} scores)</span>
@@ -178,7 +178,7 @@ export default function ComparisonDrawer() {
                       {comparisonList.map(p => {
                         const cell = p.specifications.find(s => s.key === key);
                         return (
-                          <td key={p.id} className="py-3.5 px-4 text-slate-300">
+                          <td key={p.id} className="py-3.5 px-4 text-slate-600">
                             {cell ? cell.value : <span className="text-slate-700">—</span>}
                           </td>
                         );
@@ -187,8 +187,8 @@ export default function ComparisonDrawer() {
                   ))}
 
                   {/* ADD TO CART ACTION ROW */}
-                  <tr className="border-t border-slate-800">
-                    <td className="py-6 text-slate-400 font-mono italic">Instant Add</td>
+                  <tr className="border-t border-slate-200">
+                    <td className="py-6 text-slate-500 font-mono italic">Instant Add</td>
                     {comparisonList.map(p => (
                       <td key={p.id} className="py-6 px-4">
                         <button

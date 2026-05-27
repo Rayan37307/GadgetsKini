@@ -58,26 +58,26 @@ export default function LoginRegister() {
   };
 
   return (
-    <div id="auth-view-container" className="pt-[110px] pb-24 max-w-md mx-auto px-4 md:px-8 w-full flex flex-col gap-8 justify-center min-h-[70vh]">
+    <div id="auth-view-container" className="pb-24 max-w-md mx-auto px-4 md:px-8 w-full flex flex-col gap-8 justify-center min-h-[70vh]">
       
       {/* BRAND CARD HEADER LOGU */}
       <div className="text-center flex flex-col gap-2">
-        <a href="#home" onClick={() => navigateTo('home')} className="text-3xl font-display font-extrabold tracking-widest text-white">
+        <a href="#home" onClick={() => navigateTo('home')} className="text-3xl font-display font-extrabold tracking-widest text-slate-900">
           GADGETS<span className="text-amber-500 font-black">KINI</span>
         </a>
         <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider font-mono">Operations Authentication Gateway</p>
       </div>
 
       {/* CORE ACTIVE FRAME CONTAINER */}
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl relative">
+      <div className="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden shadow-2xl relative">
         <div className="absolute inset-0 bg-radial-[at_50%_0%] from-blue-600/5 via-transparent to-transparent opacity-60 pointer-events-none" />
 
         {/* DOUBLE VIEW TAB ROW */}
-        <div className="flex border-b border-slate-800/80 bg-slate-950/60 font-display">
+        <div className="flex border-b border-slate-200/80 bg-white/60 font-display">
           <button
             onClick={() => setActiveTab('signin')}
             className={`flex-1 py-4 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2 ${
-              activeTab === 'signin' ? 'text-[#06B6D4] bg-slate-900 border-b-2 border-b-[#06B6D4]' : 'text-slate-400 hover:text-white'
+              activeTab === 'signin' ? 'text-[#06B6D4] bg-slate-50 border-b-2 border-b-[#06B6D4]' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             <LogIn size={14} /> SIGN IN TO ACCOUNT
@@ -86,7 +86,7 @@ export default function LoginRegister() {
           <button
             onClick={() => setActiveTab('register')}
             className={`flex-1 py-4 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2 ${
-              activeTab === 'register' ? 'text-[#06B6D4] bg-slate-900 border-b-2 border-b-[#06B6D4]' : 'text-slate-400 hover:text-white'
+              activeTab === 'register' ? 'text-[#06B6D4] bg-slate-50 border-b-2 border-b-[#06B6D4]' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             <UserPlus size={14} /> CREATE ACCOUNT
@@ -102,14 +102,14 @@ export default function LoginRegister() {
               
               {/* Email */}
               <div className="flex flex-col gap-1.5 text-left">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">System Email address</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">System Email address</label>
                 <div className="relative">
                   <input
                     type="email"
                     value={signInEmail}
                     onChange={(e) => setSignInEmail(e.target.value)}
                     placeholder="janedoe@gmail.com"
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -119,7 +119,7 @@ export default function LoginRegister() {
               {/* Password */}
               <div className="flex flex-col gap-1.5 text-left">
                 <div className="flex justify-between items-center text-[10px] font-mono">
-                  <span className="font-bold text-slate-400 uppercase tracking-widest">Secret Keyword</span>
+                  <span className="font-bold text-slate-500 uppercase tracking-widest">Secret Keyword</span>
                   <a href="#login" onClick={(e) => { e.preventDefault(); triggerToast('Password retrieval logs forwarded to sandbox email', 'warning'); }} className="text-blue-400 hover:underline">Forgot password?</a>
                 </div>
                 <div className="relative">
@@ -127,7 +127,7 @@ export default function LoginRegister() {
                     type="password"
                     value={signInPass}
                     onChange={(e) => setSignInPass(e.target.value)}
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -135,7 +135,7 @@ export default function LoginRegister() {
               </div>
 
               {/* Remember checkbox */}
-              <label className="flex items-center gap-2 text-xs text-slate-400 mt-1 cursor-pointer select-none text-left">
+              <label className="flex items-center gap-2 text-xs text-slate-500 mt-1 cursor-pointer select-none text-left">
                 <input
                   type="checkbox"
                   checked={rememberMe}
@@ -148,7 +148,7 @@ export default function LoginRegister() {
               {/* Action */}
               <button
                 type="submit"
-                className="w-full mt-2 py-4 bg-blue-600 hover:bg-blue-500 text-slate-950 font-black text-xs uppercase tracking-widest rounded-xl transition-colors cursor-pointer glow-blue"
+                className="w-full mt-2 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-colors cursor-pointer glow-blue"
               >
                 Let me in 🎉
               </button>
@@ -161,14 +161,14 @@ export default function LoginRegister() {
               
               {/* Full name */}
               <div className="flex flex-col gap-1.5 text-left">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Given Core Name</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">Given Core Name</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={regName}
                     onChange={(e) => setRegName(e.target.value)}
                     placeholder="e.g. Jane Doe"
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <User className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -177,14 +177,14 @@ export default function LoginRegister() {
 
               {/* Email */}
               <div className="flex flex-col gap-1.5 text-left">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">System Email</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">System Email</label>
                 <div className="relative">
                   <input
                     type="email"
                     value={regEmail}
                     onChange={(e) => setRegEmail(e.target.value)}
                     placeholder="e.g. hello.friend@corp.com"
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -193,14 +193,14 @@ export default function LoginRegister() {
 
               {/* Password */}
               <div className="flex flex-col gap-1.5 text-left">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Configure Secret code</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">Configure Secret code</label>
                 <div className="relative">
                   <input
                     type="password"
                     value={regPass}
                     onChange={(e) => setRegPass(e.target.value)}
                     placeholder="At least 8 parameters"
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -209,13 +209,13 @@ export default function LoginRegister() {
 
               {/* Confirm */}
               <div className="flex flex-col gap-1.5 text-left">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-mono">Retype Code</label>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-mono">Retype Code</label>
                 <div className="relative">
                   <input
                     type="password"
                     value={regConfirm}
                     onChange={(e) => setRegConfirm(e.target.value)}
-                    className="w-full bg-slate-955 border border-slate-700 rounded-xl py-3 pl-10 pr-4 text-xs text-white focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-955 border border-slate-300 rounded-xl py-3 pl-10 pr-4 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
                     required
                   />
                   <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" size={14} />
@@ -233,8 +233,8 @@ export default function LoginRegister() {
 
           {/* SOCIALS DIVIDERS */}
           <div className="relative my-6 text-center">
-            <hr className="border-slate-800" />
-            <span className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 px-3 text-[10px] bg-slate-900 text-slate-500 font-mono tracking-wider">
+            <hr className="border-slate-200" />
+            <span className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 px-3 text-[10px] bg-slate-50 text-slate-500 font-mono tracking-wider">
               OR COMPILATION INTEGRATION
             </span>
           </div>
@@ -242,13 +242,13 @@ export default function LoginRegister() {
           <div className="flex gap-4">
             <button
               onClick={() => handleSocialMockLogin('Google')}
-              className="flex-1 py-3 border border-slate-700 rounded-xl hover:bg-slate-800 text-xs font-bold text-slate-200 transition-colors cursor-pointer"
+              className="flex-1 py-3 border border-slate-300 rounded-xl hover:bg-slate-100 text-xs font-bold text-slate-700 transition-colors cursor-pointer"
             >
               Google Hub
             </button>
             <button
               onClick={() => handleSocialMockLogin('Apple')}
-              className="flex-1 py-3 border border-slate-700 rounded-xl hover:bg-slate-800 text-xs font-bold text-slate-200 transition-colors cursor-pointer"
+              className="flex-1 py-3 border border-slate-300 rounded-xl hover:bg-slate-100 text-xs font-bold text-slate-700 transition-colors cursor-pointer"
             >
               Apple Grid
             </button>

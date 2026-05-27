@@ -38,11 +38,11 @@ export default function OrderConfirmation() {
         <div className="p-4 bg-amber-500/10 text-amber-500 rounded-full">
           <Package size={36} />
         </div>
-        <h2 className="text-xl font-bold text-white font-display uppercase tracking-widest">No order found</h2>
-        <p className="text-xs text-slate-400">Navigate to listing catalog to check out gadgets first.</p>
+        <h2 className="text-xl font-bold text-slate-900 font-display uppercase tracking-widest">No order found</h2>
+        <p className="text-xs text-slate-500">Navigate to listing catalog to check out gadgets first.</p>
         <button
           onClick={() => navigateTo('shop')}
-          className="px-6 py-2.5 bg-blue-600 text-slate-950 font-bold uppercase tracking-wider rounded-lg text-xs"
+          className="px-6 py-2.5 bg-blue-600 text-white font-bold uppercase tracking-wider rounded-lg text-xs"
         >
           View Store
         </button>
@@ -51,7 +51,7 @@ export default function OrderConfirmation() {
   }
 
   return (
-    <div id="confirmation-view-container" className="pt-[110px] pb-24 max-w-3xl mx-auto px-4 md:px-8 w-full flex flex-col items-center justify-center text-center gap-8">
+    <div id="confirmation-view-container" className="pb-24 max-w-3xl mx-auto px-4 md:px-8 w-full flex flex-col items-center justify-center text-center gap-8">
       
       {/* 1. ANIMATED CHECKMARK SCENE */}
       <div className="relative">
@@ -87,19 +87,19 @@ export default function OrderConfirmation() {
 
       {/* CONFIRMED HEADER OVERLAYS */}
       <div className="flex flex-col gap-2.5">
-        <h1 id="confirmation-header-title" className="text-3xl md:text-4xl font-black font-display text-white tracking-tight uppercase">
+        <h1 id="confirmation-header-title" className="text-3xl md:text-4xl font-black font-display text-slate-900 tracking-tight uppercase">
           Order Confirmed! 🎉
         </h1>
-        <p className="text-sm text-slate-400 leading-relaxed max-w-md mx-auto">
+        <p className="text-sm text-slate-500 leading-relaxed max-w-md mx-auto">
           Hardware compiled successfully! We sent a duplicate digital invoice and transit updates directly to your register email.
         </p>
       </div>
 
       {/* ORDER CREDENTIALS CARD */}
-      <div className="w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 text-left flex flex-col gap-6 shadow-xl relative overflow-hidden">
+      <div className="w-full bg-slate-50 border border-slate-200 rounded-3xl p-6 md:p-8 text-left flex flex-col gap-6 shadow-xl relative overflow-hidden">
         
         {/* Top order metadata columns */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200 pb-4">
           <div>
             <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider">Purchase Order Number</p>
             <p className="text-base font-bold font-mono text-blue-400 hover:underline cursor-pointer">
@@ -122,11 +122,11 @@ export default function OrderConfirmation() {
             {latestOrder.items.map((line, idx) => (
               <div key={idx} className="flex justify-between items-center text-xs">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 bg-slate-950 border border-slate-800 rounded p-1 flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 bg-white border border-slate-200 rounded p-1 flex items-center justify-center shrink-0">
                     <img src={line.image} alt={line.name} className="max-h-full object-contain" referrerPolicy="no-referrer" />
                   </div>
                   <div className="text-left">
-                    <p className="font-semibold text-white line-clamp-1 max-w-[200px] sm:max-w-md">{line.name}</p>
+                    <p className="font-semibold text-slate-900 line-clamp-1 max-w-[200px] sm:max-w-md">{line.name}</p>
                     <p className="text-[10px] text-slate-500 font-mono font-semibold">Qty: {line.quantity} × ${line.price}</p>
                   </div>
                 </div>
@@ -138,21 +138,21 @@ export default function OrderConfirmation() {
           </div>
         </div>
 
-        <hr className="border-slate-800" />
+        <hr className="border-slate-200" />
 
         {/* Totals compilation */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed font-mono">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-500 leading-relaxed font-mono">
           
           {/* Shipping Address Column */}
           <div className="flex flex-col gap-1.5">
             <span className="text-[9px] uppercase tracking-wider text-slate-500">Shipping destination</span>
-            <div className="text-slate-300 not-italic leading-relaxed font-sans">
-              <p className="font-bold text-white mb-0.5">
+            <div className="text-slate-600 not-italic leading-relaxed font-sans">
+              <p className="font-bold text-slate-900 mb-0.5">
                 {latestOrder.shippingAddress.firstName} {latestOrder.shippingAddress.lastName}
               </p>
               <p className="text-xs">{latestOrder.shippingAddress.addressLine1}</p>
               {latestOrder.shippingAddress.addressLine2 && <p className="text-xs">{latestOrder.shippingAddress.addressLine2}</p>}
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 {latestOrder.shippingAddress.city}, {latestOrder.shippingAddress.state} {latestOrder.shippingAddress.zip}
               </p>
               <p className="text-[10px] text-slate-500 font-mono mt-0.5">Ph: {latestOrder.shippingAddress.phone}</p>
@@ -160,10 +160,10 @@ export default function OrderConfirmation() {
           </div>
 
           {/* Subtotal breakout card */}
-          <div className="bg-slate-950/40 border border-slate-850 p-4 rounded-xl flex flex-col justify-between font-mono gap-1.5">
+          <div className="bg-white/40 border border-slate-200 p-4 rounded-xl flex flex-col justify-between font-mono gap-1.5">
             <div className="flex justify-between">
               <span>Cart Subtotal</span>
-              <span className="font-bold text-slate-200">${latestOrder.subtotal.toFixed(2)}</span>
+              <span className="font-bold text-slate-700">${latestOrder.subtotal.toFixed(2)}</span>
             </div>
             {latestOrder.discount > 0 && (
               <div className="flex justify-between text-green-400">
@@ -179,10 +179,10 @@ export default function OrderConfirmation() {
             </div>
             <div className="flex justify-between">
               <span>Tax Surcharges (8%)</span>
-              <span className="font-bold text-slate-200">${latestOrder.tax.toFixed(2)}</span>
+              <span className="font-bold text-slate-700">${latestOrder.tax.toFixed(2)}</span>
             </div>
-            <hr className="border-slate-850 my-1" />
-            <div className="flex justify-between items-baseline text-sm text-white font-sans font-black">
+            <hr className="border-slate-200 my-1" />
+            <div className="flex justify-between items-baseline text-sm text-slate-900 font-sans font-black">
               <span>Grand Total</span>
               <span className="text-[#3B82F6] text-base">${latestOrder.total.toFixed(2)}</span>
             </div>
@@ -195,14 +195,14 @@ export default function OrderConfirmation() {
       <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md justify-center">
         <button
           onClick={handleTrackMockOrder}
-          className="w-full sm:w-auto px-6 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer font-display"
+          className="w-full sm:w-auto px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-700 text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer font-display"
         >
           Track Transition Progress
         </button>
 
         <button
           onClick={() => navigateTo('home')}
-          className="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-slate-950 hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 font-display hover:shadow-lg scale-100 hover:scale-103 glow-blue"
+          className="w-full sm:w-auto px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white hover:text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 font-display hover:shadow-lg scale-100 hover:scale-103 glow-blue"
         >
           Check out More Tech <ArrowRight size={14} />
         </button>
