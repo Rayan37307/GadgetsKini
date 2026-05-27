@@ -160,28 +160,35 @@ export default function ProductDetail() {
           </div>
 
           {/* Miniature Swappers */}
-          <div className="grid grid-cols-5 gap-2.5">
-            {/* Guarantee at least 5 thumbnails by substituting picsum seeds if missing code definitions */}
-            {product.images.map((imgUrl, idx) => {
-              const isSelected = activeImage === imgUrl;
-              return (
-                <button
-                  key={idx}
-                  onClick={() => setActiveImage(imgUrl)}
-                  className={`aspect-square p-2 bg-slate-950 rounded-xl cursor-pointer border flex items-center justify-center transition-all ${
-                    isSelected ? 'border-blue-500 bg-slate-900/60 ring-2 ring-blue-500/20' : 'border-slate-800 hover:border-slate-700'
-                  }`}
-                >
-                  <img
-                    src={imgUrl}
-                    alt={`${product.name} View ${idx + 1}`}
-                    className="max-h-full object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </button>
-              );
-            })}
-          </div>
+          {(() => {
+            const uniqueImages = [...new Set(product.images)];
+            if (uniqueImages.length <= 1) return null;
+            const colsMap: Record<number, string> = { 2: 'grid-cols-2', 3: 'grid-cols-3', 4: 'grid-cols-4', 5: 'grid-cols-5' };
+            const cols = colsMap[Math.min(uniqueImages.length, 5)] ?? 'grid-cols-5';
+            return (
+              <div className={`grid gap-2.5 ${cols}`}>
+                {uniqueImages.map((imgUrl, idx) => {
+                  const isSelected = activeImage === imgUrl;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveImage(imgUrl)}
+                      className={`aspect-square p-2 bg-slate-950 rounded-xl cursor-pointer border flex items-center justify-center transition-all ${
+                        isSelected ? 'border-blue-500 bg-slate-900/60 ring-2 ring-blue-500/20' : 'border-slate-800 hover:border-slate-700'
+                      }`}
+                    >
+                      <img
+                        src={imgUrl}
+                        alt={`${product.name} View ${idx + 1}`}
+                        className="max-h-full object-contain"
+                        referrerPolicy="no-referrer"
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
 
         {/* RIGHT TECHNICAL PANEL */}
@@ -239,11 +246,13 @@ export default function ProductDetail() {
           </div>
 
           {/* Bulleted short description (5 features) */}
-          <ul className="flex flex-col gap-1.5 text-xs text-slate-400 leading-relaxed list-inside list-disc">
-            {product.shortFeatures.map((feat, i) => (
-              <li key={i}>{feat}</li>
-            ))}
-          </ul>
+          {product.shortFeatures.length > 0 && (
+            <ul className="flex flex-col gap-1.5 text-xs text-slate-400 leading-relaxed list-inside list-disc">
+              {product.shortFeatures.map((feat, i) => (
+                <li key={i}>{feat}</li>
+              ))}
+            </ul>
+          )}
 
           <hr className="border-slate-850" />
 
@@ -433,30 +442,38 @@ export default function ProductDetail() {
           )}
 
           {activeTab === 'specs' && (
-            <div className="border border-slate-800 rounded-xl overflow-hidden max-w-2xl bg-slate-950/40">
-              <table className="w-full text-left text-xs border-collapse">
-                <tbody>
-                  {product.specifications.map((spec, i) => (
-                    <tr key={i} className="border-b border-slate-850/80 last:border-0 hover:bg-slate-900/30">
-                      <td className="p-3.5 font-bold text-slate-400 border-r border-slate-850/80 w-1/3 uppercase tracking-wider text-[10px] font-mono">
-                        {spec.key}
-                      </td>
-                      <td className="p-3.5 text-slate-200">
-                        {spec.value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            product.specifications.length > 0 ? (
+              <div className="border border-slate-800 rounded-xl overflow-hidden max-w-2xl bg-slate-950/40">
+                <table className="w-full text-left text-xs border-collapse">
+                  <tbody>
+                    {product.specifications.map((spec, i) => (
+                      <tr key={i} className="border-b border-slate-850/80 last:border-0 hover:bg-slate-900/30">
+                        <td className="p-3.5 font-bold text-slate-400 border-r border-slate-850/80 w-1/3 uppercase tracking-wider text-[10px] font-mono">
+                          {spec.key}
+                        </td>
+                        <td className="p-3.5 text-slate-200">
+                          {spec.value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <p className="text-xs text-slate-500 italic">Detailed specifications not available for this product.</p>
+            )
           )}
 
           {activeTab === 'box' && (
-            <ul className="flex flex-col gap-2.5 text-xs text-slate-350 list-inside list-disc max-w-xl">
-              {product.inTheBox.map((item, i) => (
-                <li key={i} className="leading-relaxed">{item}</li>
-              ))}
-            </ul>
+            product.inTheBox.length > 0 ? (
+              <ul className="flex flex-col gap-2.5 text-xs text-slate-350 list-inside list-disc max-w-xl">
+                {product.inTheBox.map((item, i) => (
+                  <li key={i} className="leading-relaxed">{item}</li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xs text-slate-500 italic">Package contents not listed.</p>
+            )
           )}
 
           {activeTab === 'reviews' && (

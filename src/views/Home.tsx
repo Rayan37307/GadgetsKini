@@ -7,13 +7,10 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { MOCK_PRODUCTS } from '../data';
 import { Product } from '../types';
-import { 
-  Smartphone, 
-  Headphones, 
-  Watch, 
-  Home as HomeIcon, 
-  Laptop, 
-  Gamepad2, 
+import {
+  Smartphone,
+  Laptop,
+  Package,
   ArrowRight,
   TrendingUp,
   ShieldCheck,
@@ -79,16 +76,24 @@ export default function Home() {
   // Fallback to grab more products if new arrivals are sparse
   const scrollArrivals = newArrivals.length >= 5 ? newArrivals : MOCK_PRODUCTS.slice(4, 10);
 
-  const categories = [
-    { name: 'Smartphones', icon: <Smartphone size={24} />, count: '4 Items' },
-    { name: 'Audio', icon: <Headphones size={24} />, count: '3 Items' },
-    { name: 'Wearables', icon: <Watch size={24} />, count: '3 Items' },
-    { name: 'Smart Home', icon: <HomeIcon size={24} />, count: '2 Items' },
-    { name: 'Laptops', icon: <Laptop size={24} />, count: '1 Item' },
-    { name: 'Gaming', icon: <Gamepad2 size={24} />, count: '2 Items' },
-  ];
+  const catCounts: Record<string, number> = {};
+  for (const p of MOCK_PRODUCTS) {
+    catCounts[p.category] = (catCounts[p.category] || 0) + 1;
+  }
+  const catIconMap: Record<string, React.ReactNode> = {
+    Smartphones: <Smartphone size={24} />,
+    Laptops: <Laptop size={24} />,
+    Accessories: <Package size={24} />,
+  };
+  const categories = Object.entries(catCounts).map(([name, count]) => ({
+    name,
+    icon: catIconMap[name] ?? <Package size={24} />,
+    count: `${count} Item${count !== 1 ? 's' : ''}`,
+  }));
 
-  const brandLogos = ['Apple', 'Samsung', 'Sony', 'Bose', 'Xiaomi', 'JBL'];
+  const brandLogos = [...new Set(MOCK_PRODUCTS.map(p => p.brand))]
+    .filter(b => b !== 'Generic')
+    .slice(0, 6);
 
   const trustNotes = [
     { title: 'Fast Delivery', text: 'Free standard shipping on all entries over $75', icon: <Truck className="text-blue-400" size={28} /> },

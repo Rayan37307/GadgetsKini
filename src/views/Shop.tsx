@@ -42,7 +42,8 @@ export default function Shop() {
   );
   
   const [activeBrands, setActiveBrands] = useState<string[]>([]);
-  const [priceMax, setPriceMax] = useState<number>(2000);
+  const maxProductPrice = Math.ceil(Math.max(...MOCK_PRODUCTS.map(p => p.price)) / 100) * 100;
+  const [priceMax, setPriceMax] = useState<number>(maxProductPrice);
   const [fourStarPlus, setFourStarPlus] = useState<boolean>(false);
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
   const [activeSort, setActiveSort] = useState<string>('featured');
@@ -81,8 +82,8 @@ export default function Shop() {
     return () => window.removeEventListener('hashchange', parseHashParams);
   }, []);
 
-  const categories = ['Smartphones', 'Audio', 'Wearables', 'Smart Home', 'Laptops', 'Gaming', 'Accessories'];
-  const brands = ['Apple', 'Samsung', 'Sony', 'Bose', 'Xiaomi', 'Anker', 'JBL', 'Generic'];
+  const categories = [...new Set(MOCK_PRODUCTS.map(p => p.category))].sort();
+  const brands = [...new Set(MOCK_PRODUCTS.map(p => p.brand))].sort();
 
   const handleCategoryToggle = (cat: string) => {
     setActiveCategories(prev => 
@@ -325,7 +326,7 @@ export default function Shop() {
             <input
               type="range"
               min="0"
-              max="2000"
+              max={maxProductPrice}
               step="50"
               value={priceMax}
               onChange={(e) => setPriceMax(Number(e.target.value))}
@@ -333,7 +334,7 @@ export default function Shop() {
             />
             <div className="flex items-center justify-between text-[10px] text-slate-500 font-mono">
               <span>$0</span>
-              <span>$2,000</span>
+              <span>${maxProductPrice.toLocaleString()}</span>
             </div>
           </div>
 
@@ -485,12 +486,17 @@ export default function Shop() {
                         </div>
 
                         {/* SHORT FEATURES EXPOSED ON LIST VIEWS */}
-                        {!gridLayout && (
+                        {!gridLayout && product.shortFeatures.length > 0 && (
                           <ul className="hidden md:flex flex-col gap-1 text-[10px] text-slate-400 mt-2 list-inside list-disc">
                             {product.shortFeatures.slice(0, 3).map((f, i) => (
                               <li key={i}>{f}</li>
                             ))}
                           </ul>
+                        )}
+                        {!gridLayout && product.shortFeatures.length === 0 && product.description[0] && (
+                          <p className="hidden md:block text-[10px] text-slate-400 mt-2 line-clamp-2">
+                            {product.description[0]}
+                          </p>
                         )}
 
                         {/* ADD CART CTA */}
@@ -601,7 +607,7 @@ export default function Shop() {
                   <input
                     type="range"
                     min="0"
-                    max="2000"
+                    max={maxProductPrice}
                     step="100"
                     value={priceMax}
                     onChange={(e) => setPriceMax(Number(e.target.value))}
